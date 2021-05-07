@@ -19,16 +19,28 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida">
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/ConfigureUIServiceInitListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/CustomRequestCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/LoginView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/main/adminView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -96,7 +108,32 @@
       <option name="presentableId" value="Default" />
       <updated>1620381774866</updated>
     </task>
+    <task id="LOCAL-00001" summary="subida">
+      <created>1620423793450</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1620423793450</updated>
+    </task>
+    <task id="LOCAL-00002" summary="subida">
+      <created>1620424188495</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1620424188495</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -109,6 +146,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="subida" />
+    <option name="LAST_COMMIT_MESSAGE" value="subida" />
   </component>
   <component name="WindowStateProjectService">
     <state x="462" y="89" key="#HTTP_Proxy" timestamp="1620383626149">
@@ -127,14 +168,18 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="429" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1620419339376" />
+    <state x="92" y="92" width="1182" height="554" key="DiffContextDialog" timestamp="1620424123992">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="92" y="92" width="1182" height="554" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424123992" />
     <state x="463" y="77" key="FileChooserDialogImpl" timestamp="1620421668888">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="77" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1620421668888" />
-    <state x="507" y="287" key="Github.CreateGistDialog" timestamp="1620382754944">
+    <state x="507" y="287" key="Github.CreateGistDialog" timestamp="1620424007179">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="507" y="287" key="Github.CreateGistDialog/0.0.1366.738@0.0.1366.738" timestamp="1620382754944" />
+    <state x="507" y="287" key="Github.CreateGistDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424007179" />
     <state x="561" y="265" key="Github.ShareDialog" timestamp="1620382785810">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -143,26 +188,46 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="484" y="73" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620382792379" />
-    <state width="1322" height="203" key="GridCell.Tab.0.bottom" timestamp="1620423740335">
+    <state width="1322" height="203" key="GridCell.Tab.0.bottom" timestamp="1620424980523">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1620423740335" />
-    <state width="1322" height="203" key="GridCell.Tab.0.center" timestamp="1620423740335">
+    <state width="1322" height="203" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
+    <state width="1322" height="203" key="GridCell.Tab.0.center" timestamp="1620424980523">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1620423740335" />
-    <state width="1322" height="203" key="GridCell.Tab.0.left" timestamp="1620423740335">
+    <state width="1322" height="203" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
+    <state width="1322" height="203" key="GridCell.Tab.0.left" timestamp="1620424980523">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1620423740335" />
-    <state width="1322" height="203" key="GridCell.Tab.0.right" timestamp="1620423740335">
+    <state width="1322" height="203" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
+    <state width="1322" height="203" key="GridCell.Tab.0.right" timestamp="1620424980523">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1620423740335" />
+    <state width="1322" height="203" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
+    <state x="213" y="23" key="Maven.ArtifactSearchDialog" timestamp="1620426034192">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="213" y="23" key="Maven.ArtifactSearchDialog/0.0.1366.738@0.0.1366.738" timestamp="1620426034192" />
     <state x="184" y="0" key="SettingsEditor" timestamp="1620421636388">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1620421636388" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1620424196508">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1620424196508" />
+    <state x="431" y="102" key="VcsDiffUtil.ChangesDialog" timestamp="1620424114614">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="431" y="102" key="VcsDiffUtil.ChangesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424114614" />
+    <state x="492" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1620423949309">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="492" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1620423949309" />
+    <state x="488" y="229" key="git4idea.rebase.GitRebaseDialog" timestamp="1620424061292">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="488" y="229" key="git4idea.rebase.GitRebaseDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424061292" />
     <state x="106" y="21" key="new project wizard" timestamp="1620423337903">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
