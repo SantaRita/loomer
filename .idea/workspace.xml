@@ -20,15 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida">
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/ConfigureUIServiceInitListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/CustomRequestCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/LoginView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/main/adminView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/ojdbc_7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +42,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1sCg23neJLZ6QSIZrub0xxku9Yo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -58,16 +62,26 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/loomer-ui/src/main/java/org/srcom" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/ojdbc-7.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="project.structure.side.proportion" value="0.49425286" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\proyectosCSI\proyectoloomer\loomer\loomer-ui\src\main\java\org\srcom" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn install:install-file -Dfile=C:\Program Files\Apache Software Foundation\Tomcat 8.0\lib\ojdbc-7.jar -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile='C:\Program Files\Apache Software Foundation\Tomcat 8.0\lib\ojdbc-7.jar' -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=&quot;C:\Program Files\Apache Software Foundation\Tomcat 8.0\lib\ojdbc-7.jar&quot; -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=&quot;C:\basura\ojdbc-7.jar -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=C:/basura/ojdbc-7.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="clean install loomer" type="MavenRunConfiguration" factoryName="Maven">
@@ -156,6 +170,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="462" y="89" key="#HTTP_Proxy/0.0.1366.738@0.0.1366.738" timestamp="1620383626149" />
+    <state x="163" y="0" key="#Project_Structure" timestamp="1620728424855">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1620728424855" />
     <state x="348" y="0" key="#Unnamed" timestamp="1620423231984">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -168,14 +186,18 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="429" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1620419339376" />
+    <state x="434" y="123" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1620741618569">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="434" y="123" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620741618569" />
     <state x="92" y="92" width="1182" height="554" key="DiffContextDialog" timestamp="1620424123992">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="92" y="92" width="1182" height="554" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424123992" />
-    <state x="463" y="77" key="FileChooserDialogImpl" timestamp="1620421668888">
+    <state x="463" y="77" key="FileChooserDialogImpl" timestamp="1620741900238">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="463" y="77" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1620421668888" />
+    <state x="463" y="77" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1620741900238" />
     <state x="507" y="287" key="Github.CreateGistDialog" timestamp="1620424007179">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -188,30 +210,30 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="484" y="73" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620382792379" />
-    <state width="1322" height="203" key="GridCell.Tab.0.bottom" timestamp="1620424980523">
+    <state width="1322" height="170" key="GridCell.Tab.0.bottom" timestamp="1620773812210">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
-    <state width="1322" height="203" key="GridCell.Tab.0.center" timestamp="1620424980523">
+    <state width="1322" height="170" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1620773812210" />
+    <state width="1322" height="170" key="GridCell.Tab.0.center" timestamp="1620773812210">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
-    <state width="1322" height="203" key="GridCell.Tab.0.left" timestamp="1620424980523">
+    <state width="1322" height="170" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1620773812210" />
+    <state width="1322" height="170" key="GridCell.Tab.0.left" timestamp="1620773812210">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
-    <state width="1322" height="203" key="GridCell.Tab.0.right" timestamp="1620424980523">
+    <state width="1322" height="170" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1620773812210" />
+    <state width="1322" height="170" key="GridCell.Tab.0.right" timestamp="1620773812210">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="203" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1620424980523" />
+    <state width="1322" height="170" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1620773812210" />
     <state x="213" y="23" key="Maven.ArtifactSearchDialog" timestamp="1620426034192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="213" y="23" key="Maven.ArtifactSearchDialog/0.0.1366.738@0.0.1366.738" timestamp="1620426034192" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1620421636388">
+    <state x="184" y="0" key="SettingsEditor" timestamp="1620742800362">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1620421636388" />
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1620742800362" />
     <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1620424196508">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -224,6 +246,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="492" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1620423949309" />
+    <state x="390" y="104" width="585" height="530" key="find.popup" timestamp="1620740229788">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="390" y="104" width="585" height="530" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1620740229788" />
     <state x="488" y="229" key="git4idea.rebase.GitRebaseDialog" timestamp="1620424061292">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -232,5 +258,13 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="106" y="21" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1620423337903" />
+    <state x="339" y="159" width="1004" height="677" key="run.anything.popup" timestamp="1620744307542">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="339" y="159" width="1004" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1620744307542" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1620729999390">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1620729999390" />
   </component>
 </project>
