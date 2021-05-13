@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -22,21 +19,24 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/api/model/Generico0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/objetosdb/AccesoPL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/objetosdb/PAC_SHWEB_LISTAS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/util/ConversionUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/util/LoomerBaseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/util/Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application-dev.yml" afterDir="false" />
+    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida portatil">
+      <change afterPath="$PROJECT_DIR$/loomer-api/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-api/src/main/java/org/srcom/loomerapi/Generico0.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-api/src/main/java/org/srcom/loomerapi/Generico0DTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-api/src/main/java/org/srcom/loomerapi/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/api/model/Generico0DTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/config/application-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/config/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_05_2021_11_34__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_05_2021_11_34__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/controller/EjecutarSentencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/servicerest/EjecutarSentencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/servicerest/EjecutarSentencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/servicerest/EjecutarSentencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +53,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1sCg23neJLZ6QSIZrub0xxku9Yo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -67,27 +74,32 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/objetosdb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/loomer-suite/src/main/resources/config" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="project.structure.side.proportion" value="0.49425286" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.srcom.loomerapi" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-db\src\main\java\org\srcom\loomerdb\server\jdbc\objetosdb" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-db\src\main\java\org\srcom\loomerdb\api" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-db\src\main\java\org\srcom\loomerdb\server" />
+      <recent name="C:\proyectosCSI\proyectoloomer\loomer\loomer-suite\src\main\resources\config" />
+      <recent name="C:\proyectosCSI\proyectoloomer\loomer\loomer-api\src\main\java" />
       <recent name="C:\proyectosCSI\proyectoloomer\loomer\loomer-ui\src\main\java\org\srcom" />
     </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn install:install-file -Dfile=C:/sh24/ojdbc-7.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
-      <command value="mvn install:install-file -Dfile=C:/sh24/ojdbc7.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=C:\Program Files\Apache Software Foundation\Tomcat 8.0\lib\ojdbc-7.jar -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile='C:\Program Files\Apache Software Foundation\Tomcat 8.0\lib\ojdbc-7.jar' -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=&quot;C:\Program Files\Apache Software Foundation\Tomcat 8.0\lib\ojdbc-7.jar&quot; -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=&quot;C:\basura\ojdbc-7.jar -DgroupId=com.oracle      -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
+      <command value="mvn install:install-file -Dfile=C:/basura/ojdbc-7.jar -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.2 -Dpackaging=jar" />
     </option>
   </component>
-  <component name="RunManager" selected="Maven.clean install loomer">
+  <component name="RunManager" selected="Maven.loomer-db run">
     <configuration name="clean install loomer" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -114,10 +126,25 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <configuration name="loomer-db [spring-boot:run] dev" type="MavenRunConfiguration" factoryName="Maven">
+    <configuration name="loomer-db run" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
+        <option name="myRunnerSettings">
+          <MavenRunnerSettings>
+            <option name="delegateBuildToMaven" value="false" />
+            <option name="environmentProperties">
+              <map />
+            </option>
+            <option name="jreName" value="#USE_PROJECT_JDK" />
+            <option name="mavenProperties">
+              <map />
+            </option>
+            <option name="passParentEnv" value="true" />
+            <option name="runMavenInBackground" value="true" />
+            <option name="skipTests" value="false" />
+            <option name="vmOptions" value="-Dspring.profiles.active=dev" />
+          </MavenRunnerSettings>
+        </option>
         <option name="myRunnerParameters">
           <MavenRunnerParameters>
             <option name="profiles">
@@ -126,12 +153,14 @@
             <option name="goals">
               <list>
                 <option value="spring-boot:run" />
-                <option value="-Dspring-boot.run.profiles=dev" />
+                <option value="-Dspring.profiles.active=dev" />
               </list>
             </option>
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
-              <map />
+              <map>
+                <entry key="dev" value="true" />
+              </map>
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$/loomer-db" />
@@ -142,10 +171,9 @@
     </configuration>
     <list>
       <item itemvalue="Maven.clean install loomer" />
-      <item itemvalue="Maven.loomer-db [spring-boot:run] dev" />
+      <item itemvalue="Maven.loomer-db run" />
     </list>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -199,5 +227,111 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="subida" />
     <option name="LAST_COMMIT_MESSAGE" value="subida" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="462" y="89" key="#HTTP_Proxy" timestamp="1620383626149">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="462" y="89" key="#HTTP_Proxy/0.0.1366.738@0.0.1366.738" timestamp="1620383626149" />
+    <state x="163" y="0" key="#Project_Structure" timestamp="1620728424855">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.738@0.0.1366.738" timestamp="1620728424855" />
+    <state x="348" y="0" key="#Unnamed" timestamp="1620896101939">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="348" y="0" key="#Unnamed/0.0.1366.738@0.0.1366.738" timestamp="1620896101939" />
+    <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1620912605641">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="137" y="23" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1620912605641" />
+    <state x="429" y="170" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620419339376">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="429" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1620419339376" />
+    <state x="413" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1620903037767">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="115" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620903037767" />
+    <state x="434" y="123" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1620741618569">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="434" y="123" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620741618569" />
+    <state x="92" y="92" width="1182" height="554" key="DiffContextDialog" timestamp="1620424123992">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="92" y="92" width="1182" height="554" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424123992" />
+    <state x="463" y="77" key="FileChooserDialogImpl" timestamp="1620741900238">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="463" y="77" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1620741900238" />
+    <state x="507" y="287" key="Github.CreateGistDialog" timestamp="1620424007179">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="507" y="287" key="Github.CreateGistDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424007179" />
+    <state x="561" y="265" key="Github.ShareDialog" timestamp="1620382785810">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="561" y="265" key="Github.ShareDialog/0.0.1366.738@0.0.1366.738" timestamp="1620382785810" />
+    <state x="484" y="73" key="Github.UntrackedFilesDialog" timestamp="1620382792379">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="484" y="73" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620382792379" />
+    <state width="1322" height="172" key="GridCell.Tab.0.bottom" timestamp="1620918006581">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="172" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1620918006581" />
+    <state width="1322" height="172" key="GridCell.Tab.0.center" timestamp="1620918006581">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="172" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1620918006581" />
+    <state width="1322" height="172" key="GridCell.Tab.0.left" timestamp="1620918006580">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="172" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1620918006580" />
+    <state width="1322" height="172" key="GridCell.Tab.0.right" timestamp="1620918006581">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="172" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1620918006581" />
+    <state x="213" y="23" key="Maven.ArtifactSearchDialog" timestamp="1620426034192">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="213" y="23" key="Maven.ArtifactSearchDialog/0.0.1366.738@0.0.1366.738" timestamp="1620426034192" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1620895752328">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1620895752328" />
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2" timestamp="1620424196508">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="275" y="101" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1620424196508" />
+    <state x="431" y="102" key="VcsDiffUtil.ChangesDialog" timestamp="1620424114614">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="431" y="102" key="VcsDiffUtil.ChangesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424114614" />
+    <state x="492" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1620423949309">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="492" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1620423949309" />
+    <state x="390" y="104" width="935" height="530" key="find.popup" timestamp="1620912563833">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="390" y="104" width="935" height="530" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1620912563833" />
+    <state x="488" y="229" key="git4idea.rebase.GitRebaseDialog" timestamp="1620424061292">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="488" y="229" key="git4idea.rebase.GitRebaseDialog/0.0.1366.738@0.0.1366.738" timestamp="1620424061292" />
+    <state x="106" y="21" key="new project wizard" timestamp="1620902107144">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="106" y="21" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1620902107144" />
+    <state x="339" y="159" width="1004" height="677" key="run.anything.popup" timestamp="1620744307542">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="339" y="159" width="1004" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1620744307542" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1620916606216">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1620916606216" />
   </component>
 </project>

@@ -3,7 +3,7 @@ package org.srcom.loomerdb.servicerest;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.srcom.loomerdb.server.jdbc.objetosdb.*;
+import org.srcom.loomerdb.api.model.Generico0;
 
 import javax.sql.DataSource;
 import java.lang.reflect.Array;
@@ -25,7 +25,6 @@ public class EjecutarSentencia {
     @Autowired
     DataSource ds;
 
-    //@GetMapping("/ejecutadb")
     @RequestMapping(
             value = "/ejecutadb",
             method = RequestMethod.POST,
@@ -47,23 +46,28 @@ public class EjecutarSentencia {
 
         Object objetoDb = cons.newInstance(new Object[]{con});
 
-        log.info("ejecuta" + paquete.toUpperCase() + "__" + funcion.toUpperCase());
 
         Class<?>[] parameterTypes = new Class<?>[parameters.length];
         Object[] parameterInput = new Object [parameters.length];
 
+
         for (int i = 0; i < parameters.length; i++) {
+
+            Map<String, Object> json = (Map<String, Object>) parameters[i];
+
             if (parameters[i].getClass().equals(Integer.class)) {
                 parameterTypes[i] = BigDecimal.class;
-                parameterInput[i] = new BigDecimal((Integer) parameters[i]);
+                parameterInput[i] = new BigDecimal((Integer) json.get("valor"));
             } else {
-                parameterTypes[i] = parameters[i].getClass();
-                parameterInput[i] = parameters[i];
+                parameterTypes[i] = json.get("valor").getClass();
+                parameterInput[i] = json.get("valor");
             }
         }
 
 
         Method method = objetoDb.getClass().getDeclaredMethod("ejecuta" + paquete.toUpperCase() + "__" + funcion.toUpperCase(),parameterTypes);
+        log.info("ejecuta" + method.getName());
+
         method.setAccessible(true);
         HashMap hm = (HashMap) method.invoke(objetoDb,parameterInput);
 

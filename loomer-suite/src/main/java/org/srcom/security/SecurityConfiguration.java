@@ -120,8 +120,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         // typical logged in user with some privileges
         UserDetails normalUser =
-                User.withUsername("user")
-                        .password("{noop}password")
+                User.withUsername("ama_admon")
+                        .password("{noop}inicio")
                         .roles("User")
                         .build();
 
