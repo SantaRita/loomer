@@ -1,0 +1,25 @@
+logging:
+  level: error
+  level.org.hibernate.SQL: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      connectionTimeout: 30000
+      data-source-properties:
+        v$session.program:DevPoolPGE
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      maximumPoolSize: 20
+      minimumIdle: 2
+      poolName: LoomerPool
+    password: inicio
+    url: jdbc:oracle:thin:@10.101.7.16:1521:SIAMA
+    username: AMA_ADMON
+
+
+  main:
+    banner-mode: 'off'
