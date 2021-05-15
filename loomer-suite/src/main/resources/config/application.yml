@@ -2,8 +2,8 @@ spring:
   profiles:
     active: dev
 
-#server:
-#    servlet:
-#        contextPath:  /loomer
+server:
+    servlet:
+        contextPath:  /loomer
 
 

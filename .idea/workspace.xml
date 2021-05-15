@@ -19,13 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida portatil">
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/i18n/ApplicationServiceInitListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/i18n/VaadinI18NProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/vaadinapp.properties" afterDir="false" />
+    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida portatil con multiidoma configurados">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/config/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +187,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620424188495</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="subida portatil con multiidoma configurados">
+      <created>1621088815839</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1621088815839</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -217,7 +221,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="subida" />
-    <option name="LAST_COMMIT_MESSAGE" value="subida" />
+    <MESSAGE value="subida portatil con multiidoma configurados" />
+    <option name="LAST_COMMIT_MESSAGE" value="subida portatil con multiidoma configurados" />
   </component>
   <component name="WindowStateProjectService">
     <state x="462" y="89" key="#HTTP_Proxy" timestamp="1620383626149">
@@ -272,22 +277,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="484" y="73" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620382792379" />
-    <state width="1322" height="176" key="GridCell.Tab.0.bottom" timestamp="1621088590223">
+    <state width="1322" height="176" key="GridCell.Tab.0.bottom" timestamp="1621089698681">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="176" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1621088590223" />
-    <state width="1322" height="176" key="GridCell.Tab.0.center" timestamp="1621088590223">
+    <state width="1322" height="176" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1621089698681" />
+    <state width="1322" height="176" key="GridCell.Tab.0.center" timestamp="1621089698681">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="176" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1621088590223" />
-    <state width="1322" height="176" key="GridCell.Tab.0.left" timestamp="1621088590223">
+    <state width="1322" height="176" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1621089698681" />
+    <state width="1322" height="176" key="GridCell.Tab.0.left" timestamp="1621089698680">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="176" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1621088590223" />
-    <state width="1322" height="176" key="GridCell.Tab.0.right" timestamp="1621088590223">
+    <state width="1322" height="176" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1621089698680" />
+    <state width="1322" height="176" key="GridCell.Tab.0.right" timestamp="1621089698681">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="176" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1621088590223" />
+    <state width="1322" height="176" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1621089698681" />
     <state x="213" y="23" key="Maven.ArtifactSearchDialog" timestamp="1620426034192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
