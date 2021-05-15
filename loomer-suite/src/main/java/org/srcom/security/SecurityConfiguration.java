@@ -108,6 +108,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // (development mode) static resources //
                 "/frontend/**",
 
+                "/icons/**",
+
                 // (development mode) webjars //
                 "/webjars/**",
 

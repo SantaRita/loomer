@@ -31,13 +31,11 @@ public class LoginView extends VerticalLayout {
 
 
 
-        LoginI18n i18n = LoginI18n.createDefault();
-        i18n.setAdditionalInformation("To close the login form submit non-empty username and password");
-        i18n.getHeader().setTitle("Loomer");
+        LoginI18n i18n = createLoginI18n();
         login.setI18n(i18n);
-        /*login.addForgotPasswordListener(e->{
+        login.addForgotPasswordListener(e->{
             Notification.show("Forgot password not yet handled", 120, Notification.Position.TOP_CENTER);
-        });*/
+        });
         login.setOpened(true);
         login.addLoginListener(e -> { //
             try {
@@ -64,28 +62,27 @@ public class LoginView extends VerticalLayout {
     private LoginI18n createLoginI18n(){
         LoginI18n i18n = LoginI18n.createDefault();
 
-	/*  not sure if needed
-	i18n.setHeader(new LoginI18n.Header());
-	i18n.setForm(new LoginI18n.Form());
-	i18n.setErrorMessage(new LoginI18n.ErrorMessage());
-	*/
+	    i18n.setHeader(new LoginI18n.Header());
+	    i18n.setForm(new LoginI18n.Form());
+	    i18n.setErrorMessage(new LoginI18n.ErrorMessage());
+
 
         // define all visible Strings to the values you want
         // this code is copied from above-linked example codes for Login
         // in a truly international application you would use i.e. `getTranslation(USERNAME)` instead of hardcoded string values. Make use of your I18nProvider
-        i18n.getHeader().setTitle("Loomer");
-        i18n.getHeader().setDescription("Descrição do aplicativo");
-        i18n.getForm().setUsername("Usuário"); // this is the one you asked for.
-        i18n.getForm().setTitle("Acesse a sua conta");
-        i18n.getForm().setSubmit("Entrar");
-        i18n.getForm().setPassword("Senha");
-        i18n.getForm().setForgotPassword("Esqueci minha senha");
-        i18n.getErrorMessage().setTitle("Usuário/senha inválidos");
+        i18n.getHeader().setTitle(getTranslation("nomapp"));
+        i18n.getHeader().setDescription(getTranslation("version"));
+        i18n.getForm().setUsername(getTranslation("usuario")); // this is the one you asked for.
+        i18n.getForm().setTitle(getTranslation("accesocuenta"));
+        i18n.getForm().setSubmit(getTranslation("entrar"));
+        i18n.getForm().setPassword(getTranslation("contraseña"));
+        i18n.getForm().setForgotPassword(getTranslation("olvidopwd"));
+        i18n.getErrorMessage().setTitle(getTranslation("usupwdinvalido"));
         i18n.getErrorMessage()
-                .setMessage("Confira seu usuário e senha e tente novamente.");
-        i18n.setAdditionalInformation(
+                .setMessage(getTranslation("verificarusupwd"));
+        /*i18n.setAdditionalInformation(
                 "Caso necessite apresentar alguma informação extra para o usuário"
-                        + " (como credenciais padrão), este é o lugar.");
+                        + " (como credenciais padrão), este é o lugar.");*/
         return i18n;
     }
 }
