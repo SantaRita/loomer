@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+
+database:
+  server:
+    url: http://localhost:8081/loomer/api/ejecutadb
+
+

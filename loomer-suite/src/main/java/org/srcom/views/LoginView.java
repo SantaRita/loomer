@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.srcom.loomerapi.rest.EjecutaPac;
 import org.srcom.security.CustomRequestCache;
 
 
@@ -57,6 +58,12 @@ public class LoginView extends VerticalLayout {
         });
 
         add(login);
+
+        Object a = null;
+
+        System.out.println("________________ llamada ejecutaPac ____________");
+        String salida = EjecutaPac.EjecutaPac( "hola", "adios" );
+        System.out.println("aqui tenemos la respueta");
     }
 
     private LoginI18n createLoginI18n(){
