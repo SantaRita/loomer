@@ -14,8 +14,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.srcom.loomerapi.rest.EjecutaPac;
+import org.srcom.rest.EjecutaPac;
 import org.srcom.security.CustomRequestCache;
+
+import java.net.URISyntaxException;
 
 
 @Tag("sa-login-view")
@@ -28,7 +30,7 @@ public class LoginView extends VerticalLayout {
 
     @Autowired
     public LoginView(AuthenticationManager authenticationManager, //
-                     CustomRequestCache requestCache) {
+                     CustomRequestCache requestCache) throws URISyntaxException {
 
 
 
@@ -62,7 +64,7 @@ public class LoginView extends VerticalLayout {
         Object a = null;
 
         System.out.println("________________ llamada ejecutaPac ____________");
-        String salida = EjecutaPac.EjecutaPac( "hola", "adios" );
+        String salida = new EjecutaPac().EjecutaPac( "hola", "adios" );
         System.out.println("aqui tenemos la respueta");
     }
 
