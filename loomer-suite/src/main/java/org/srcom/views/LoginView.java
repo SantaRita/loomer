@@ -63,9 +63,9 @@ public class LoginView extends VerticalLayout {
 
         Object a = null;
 
-        System.out.println("________________ llamada ejecutaPac ____________");
-        String salida = new EjecutaPac().EjecutaPac( "hola", "adios" );
-        System.out.println("aqui tenemos la respueta");
+
+        //String salida = new EjecutaPac().EjecutaPac( "hola", "adios" );
+
     }
 
     private LoginI18n createLoginI18n(){

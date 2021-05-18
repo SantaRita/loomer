@@ -12,7 +12,6 @@ public class ApplicationServiceInitListener
 
   @Override
   public void serviceInit(ServiceInitEvent e) {
-    System.out.println("inicializador");
     setProperty("vaadin.i18n.provider", VaadinI18NProvider.class.getName());
   }
 

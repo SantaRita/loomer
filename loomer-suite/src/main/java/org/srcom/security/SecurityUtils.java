@@ -54,10 +54,10 @@ public class SecurityUtils {
         if (secured == null) {
 
             // [...]
-            return false;
+            return true;
         }
 
-        return false;
+        return true;
     }
 
 }
