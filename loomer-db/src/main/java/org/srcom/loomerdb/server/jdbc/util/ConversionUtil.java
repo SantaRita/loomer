@@ -13,13 +13,11 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 
 import lombok.extern.apachecommons.CommonsLog;
 import oracle.jdbc.OracleResultSet;
+import org.springframework.util.StringUtils;
 
-
-// import axis.cache.ConfigCache;
 
 @CommonsLog
 public class ConversionUtil {
@@ -469,7 +467,7 @@ public class ConversionUtil {
             String miToString=(o!=null)?o.toString():"";
 
             // 9557�20090326�ecg�escapear en el toString al final &,< y >
-            miToString=StringUtils.replace(miToString, "&", "&amp;");
+            miToString= StringUtils.replace(miToString, "&", "&amp;");
             miToString=StringUtils.replace(miToString, "<", "&lt;");
             miToString=StringUtils.replace(miToString, ">", "&gt;");
 

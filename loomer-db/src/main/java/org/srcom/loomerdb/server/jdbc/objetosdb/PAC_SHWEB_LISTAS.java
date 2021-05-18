@@ -913,7 +913,6 @@ public class PAC_SHWEB_LISTAS extends AccesoPL {
         cStmt.setObject (2, pCONSULTA);
         cStmt.execute();
         HashMap retVal=new HashMap();
-        System.out.println("Salida lista GET_F_QUERY:"+retVal);
         try {
             retVal.put("RETURN", cStmt.getObject(1));
         }

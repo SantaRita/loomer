@@ -41,6 +41,7 @@ public class SecurityUtils {
     }
 
     public static boolean isAccessGranted(Class<?> securedClass) {
+        System.out.println("Dentro de isAccessGranted ");
         if (LoginView.class.equals(securedClass)) { //
             return true;
         }

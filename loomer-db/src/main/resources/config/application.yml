@@ -1,6 +1,16 @@
 spring:
   profiles:
     active: dev
+  output:
+    ansi:
+      enabled: DETECT
+
+logging:
+  level: error
+  level.org.hibernate.SQL: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %cyan(%logger{36}) - %msg%n'
 
 server:
   port: 8081
+

@@ -2,6 +2,22 @@ spring:
   profiles:
     active: dev
 
+
+server:
+  port: ${PORT:8080}
+
+database:
+  rest:
+    url: http://localhost:8081/loomer/api/ejecutadb
+
+
+logging:
+  level: error
+  level.org.hibernate.SQL: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %orange(%logger{36}) - %msg%n'
+
+
 #server:
 #    servlet:
 #        contextPath:  /loomer

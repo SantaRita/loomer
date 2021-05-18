@@ -1,23 +1,21 @@
 package org.srcom.loomerdb.servicerest;
 
 import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.srcom.loomerdb.api.model.Generico0;
 
 import javax.sql.DataSource;
-import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-@CommonsLog
+@Slf4j
 @RestController
 @RequestMapping("/loomer/api")
 public class EjecutarSentencia {
@@ -66,7 +64,7 @@ public class EjecutarSentencia {
 
 
         Method method = objetoDb.getClass().getDeclaredMethod("ejecuta" + paquete.toUpperCase() + "__" + funcion.toUpperCase(),parameterTypes);
-        log.info("ejecuta" + method.getName());
+        log.info( method.getName());
 
         method.setAccessible(true);
         HashMap hm = (HashMap) method.invoke(objetoDb,parameterInput);

@@ -30,7 +30,6 @@ public class EjecutaPac {
     public HashMap EjecutaPac(String funcion, String paquete, Object... parametros)  {
 
         try {
-            System.out.println("kkkkllamada a ejecuta pac url ");
             RestTemplate restTemplate = new RestTemplate();
             final String baseUrl = "http://localhost:8081/loomer/api/ejecutadb?paquete=PAC_SHWEB_LISTAS&funcion=F_QUERY";
             URI uri = new URI(baseUrl);
