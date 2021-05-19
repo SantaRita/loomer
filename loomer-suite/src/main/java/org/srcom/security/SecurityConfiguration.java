@@ -2,7 +2,6 @@ package org.srcom.security;
 
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.NotFoundException;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,13 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.srcom.rest.EjecutaPac;
-import org.srcom.views.LoginView;
+import org.srcom.ui.views.login.LoginView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -88,7 +81,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .failureUrl(LOGIN_FAILURE_URL)
 
                 // Configure logout
-                .and().logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
+                .and().logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL)
+                .invalidateHttpSession(true);
     }
 
     /**
@@ -121,6 +115,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
                 "/icons/**",
+
+                "/img/languageflags/**",
 
                 // (production mode) static resources //
                 "/frontend-es5/**", "/frontend-es6/**");

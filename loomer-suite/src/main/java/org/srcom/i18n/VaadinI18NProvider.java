@@ -19,11 +19,12 @@ public class VaadinI18NProvider implements I18NProvider {
     System.out.println(VaadinI18NProvider.class.getSimpleName() + " was found..");
   }
 
-  public static final String RESOURCE_BUNDLE_NAME = "vaadinapp";
+  public static final String RESOURCE_BUNDLE_NAME = "LanguageSelect";
 
   private static final ResourceBundle RESOURCE_BUNDLE_EN = getBundle(RESOURCE_BUNDLE_NAME , ENGLISH);
-  private static final ResourceBundle RESOURCE_BUNDLE_DE = getBundle(RESOURCE_BUNDLE_NAME , GERMAN);
-  private static final List<Locale> providedLocales = unmodifiableList(asList(ENGLISH , GERMAN));
+
+
+  private static final List<Locale> providedLocales = unmodifiableList(asList(ENGLISH ));
 
   @Override
   public List<Locale> getProvidedLocales() {
@@ -34,8 +35,8 @@ public class VaadinI18NProvider implements I18NProvider {
   @Override
   public String getTranslation(String key , Locale locale , Object... params) {
     ResourceBundle resourceBundle = RESOURCE_BUNDLE_EN;
-    if (GERMAN.equals(locale)) {
-      resourceBundle = RESOURCE_BUNDLE_DE;
+    if (ENGLISH.equals(locale)) {
+      resourceBundle = RESOURCE_BUNDLE_EN;
     }
 
     if (! resourceBundle.containsKey(key)) {

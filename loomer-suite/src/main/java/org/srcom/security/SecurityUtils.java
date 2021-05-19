@@ -7,7 +7,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.srcom.views.LoginView;
+import org.srcom.ui.views.login.LoginView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.stream.Stream;
