@@ -16,24 +16,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida portatil con multiidoma configurados">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_05_2021_11_34__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_05_2021_11_34__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_10_44__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_10_44__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida portatil">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/LoomerDbApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/LoomerDbApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/objetosdb/PAC_SHWEB_LISTAS.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/objetosdb/PAC_SHWEB_LISTAS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/util/ConversionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/server/jdbc/util/ConversionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/servicerest/EjecutarSentencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/java/org/srcom/loomerdb/servicerest/EjecutarSentencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-db/src/main/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/rest/EjecutaPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/rest/EjecutaPac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/main/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/views/main/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/config/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621102229494</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="subida portatil">
+      <created>1621349774671</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1621349774671</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -306,7 +297,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="subida" />
     <MESSAGE value="subida portatil con multiidoma configurados" />
-    <option name="LAST_COMMIT_MESSAGE" value="subida portatil con multiidoma configurados" />
+    <MESSAGE value="subida portatil" />
+    <option name="LAST_COMMIT_MESSAGE" value="subida portatil" />
   </component>
   <component name="WindowStateProjectService">
     <state x="462" y="89" key="#HTTP_Proxy" timestamp="1620383626149">
@@ -369,22 +361,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="484" y="73" key="Github.UntrackedFilesDialog/0.0.1366.738@0.0.1366.738" timestamp="1620382792379" />
-    <state width="1322" height="197" key="GridCell.Tab.0.bottom" timestamp="1621348953950">
+    <state width="1322" height="197" key="GridCell.Tab.0.bottom" timestamp="1621349956712">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="197" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1621348953950" />
-    <state width="1322" height="197" key="GridCell.Tab.0.center" timestamp="1621348953949">
+    <state width="1322" height="197" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1621349956712" />
+    <state width="1322" height="197" key="GridCell.Tab.0.center" timestamp="1621349956712">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="197" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1621348953949" />
-    <state width="1322" height="197" key="GridCell.Tab.0.left" timestamp="1621348953949">
+    <state width="1322" height="197" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1621349956712" />
+    <state width="1322" height="197" key="GridCell.Tab.0.left" timestamp="1621349956712">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="197" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1621348953949" />
-    <state width="1322" height="197" key="GridCell.Tab.0.right" timestamp="1621348953950">
+    <state width="1322" height="197" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1621349956712" />
+    <state width="1322" height="197" key="GridCell.Tab.0.right" timestamp="1621349956712">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="197" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1621348953950" />
+    <state width="1322" height="197" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1621349956712" />
     <state x="213" y="23" key="Maven.ArtifactSearchDialog" timestamp="1620426034192">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
