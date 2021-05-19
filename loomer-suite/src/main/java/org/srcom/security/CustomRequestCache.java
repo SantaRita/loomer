@@ -5,7 +5,7 @@ import com.vaadin.flow.server.VaadinServletResponse;
 import org.springframework.security.web.savedrequest.DefaultSavedRequest;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
-import org.srcom.views.LoginView;
+import org.srcom.ui.views.login.LoginView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

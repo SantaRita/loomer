@@ -13,14 +13,13 @@ database:
 
 logging:
   level: error
+#  level.web: debug
   level.org.hibernate.SQL: debug
   pattern:
     console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %orange(%logger{36}) - %msg%n'
 
 
-#server:
-#    servlet:
-#        contextPath:  /loomer
+
 
 
 

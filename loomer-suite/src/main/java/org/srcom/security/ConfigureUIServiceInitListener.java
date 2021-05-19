@@ -5,7 +5,7 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
 import org.springframework.stereotype.Component;
-import org.srcom.views.LoginView;
+import org.srcom.ui.views.login.LoginView;
 
 @Component //
 public class ConfigureUIServiceInitListener implements VaadinServiceInitListener { //

@@ -1,23 +1,19 @@
 package org.srcom.security;
 
-import java.net.URISyntaxException;
-import java.util.*;
-
-import com.google.gson.Gson;
 import com.vaadin.flow.server.VaadinSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.srcom.loomerapi.Generico0;
 import org.srcom.rest.EjecutaPac;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // implementación para recuperar el usuario de la base de datos
 
@@ -29,14 +25,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @PostConstruct
     public void init() {
 
-        roles.put("admin", new User("admin", "{noop}admin1", getAuthority("ROLE_ADMIN")));
-        roles.put("user", new User("ama_admon", "{noop}inicio", getAuthority("ROLE_USER")));
+        System.out.println("init_____________________________");
+        /*roles.put("admin", new User("admin", "{noop}admin1", getAuthority("ROLE_ADMIN")));
+        roles.put("user", new User("ama_admon", "{noop}inicio", getAuthority("ROLE_USER")));*/
     }
 
 
     @Override
     public UserDetails loadUserByUsername(String username) {
 
+        roles.clear();
+        roles.put("admin", new User("admin", "{noop}admin1", getAuthority("ROLE_ADMIN")));
+        roles.put("user", new User("ama_admon", "{noop}inicio", getAuthority("ROLE_USER")));
+        
         String usuEncontrado = null;
 
         HashMap usuario = new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS","F_QUERY",
