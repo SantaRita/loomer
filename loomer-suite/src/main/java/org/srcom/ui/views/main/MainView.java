@@ -44,7 +44,7 @@ import org.srcom.ui.views.personnel.Managers;
 @CssImport(value = "./styles/styles.css", include = "lumo-badge")
 @JsModule("@vaadin/vaadin-lumo-styles/badge")
 @PWA(name = "loomer-suite", shortName = "loomer-suite", enableInstallPrompt = false)
-//@PWA(name = "My Starter Project", shortName = "My Starter Project", iconPath = "images/logo-18.png", backgroundColor = "#233348", themeColor = "#233348")
+//@PWA(name = "My Starter Project", shortName = "My Starter Project", iconPath = "images/logo-logoapp.png", backgroundColor = "#233348", themeColor = "#233348")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigurator, AfterNavigationObserver {
 

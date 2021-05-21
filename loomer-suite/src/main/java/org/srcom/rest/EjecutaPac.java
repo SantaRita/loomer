@@ -2,6 +2,7 @@ package org.srcom.rest;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
@@ -13,21 +14,40 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
+@CommonsLog
 public class EjecutaPac {
 
     @Autowired
     private Environment env;
 
-    /*static String EjecutaPac(String hola, String adios) {
-        return ("funciona");
-    }*/
+
+    // llamada que devuelve los registros en un string, lo utilizamos para lLENAR LOS GRIDS.
+    final String baseUrl = "http://localhost:8081/loomer/api/ejecutadb?paquete=PAC_SHWEB_LISTAS&funcion=F_QUERY";
 
 
+    public String EjecutaPacStr(String funcion, String paquete, Object... parametros)  {
+
+            return resultado(funcion, paquete, parametros);
+
+    }
+
+    // llamada que devuelve los registros en un hashmap
     public HashMap EjecutaPac(String funcion, String paquete, Object... parametros)  {
+
+
+            HashMap<String, Object> retMap = new Gson().fromJson(
+                    resultado(funcion, paquete, parametros), new TypeToken<HashMap<String, Object>>() {}.getType()
+            );
+
+            return retMap;
+
+    }
+
+    // llamada privada genérica que devuelve el resultado del sql
+    private String resultado(String funcion, String paquete, Object... parametros) {
 
         try {
             RestTemplate restTemplate = new RestTemplate();
-            final String baseUrl = "http://localhost:8081/loomer/api/ejecutadb?paquete=PAC_SHWEB_LISTAS&funcion=F_QUERY";
             URI uri = new URI(baseUrl);
 
             HttpHeaders headers = new HttpHeaders();
@@ -39,7 +59,6 @@ public class EjecutaPac {
 
             for ( Object obj: parametros ) {
                 //if obj.getClass().toString().equals()
-                System.out.println("Clase:" + obj.getClass().toString() );
                 requestJson += "\"valor\" :  \"" + ((String)obj).toString()  +"\" ";
             }
 
@@ -49,19 +68,17 @@ public class EjecutaPac {
 
             HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
 
+
             String answer = restTemplate.postForObject(uri, entity, String.class);
-            System.out.println(answer);
-
-            HashMap<String, Object> retMap = new Gson().fromJson(
-                    answer, new TypeToken<HashMap<String, Object>>() {}.getType()
-            );
 
 
-            System.out.println("Respuesta mapa:" +  retMap);
+            log.info(paquete + "__" + funcion + " :" + answer);
 
-            return retMap;
+            return answer;
+
 
         } catch ( URISyntaxException e) {
+            log.error(e.toString());
 
         }
 

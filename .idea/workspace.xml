@@ -23,21 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida portatil">
-      <change afterPath="$PROJECT_DIR$/loomer-suite/frontend/img/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/frontend/styles/components/myLoginViewStyles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/webapp/img/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_10_44_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021_10_44__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-api/target/loomer-api-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-api/target/loomer-api-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-api/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-api/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loomer-suite/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/i18n/ApplicationServiceInitListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/i18n/ApplicationServiceInitListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/i18n/VaadinI18NProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/i18n/VaadinI18NProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/rest/EjecutaPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/rest/EjecutaPac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/components/navigation/bar/AppBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/components/navigation/bar/AppBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/login/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/login/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/resources/vaadinapp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/LanguageSelect.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/Expedientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/Expedientes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +43,8 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -76,7 +67,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/loomer-suite/src/main/webapp/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/loomer-suite/src/main/resources/META-INF/resources/img" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.49425286" />
@@ -84,16 +75,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\webapp\img" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\frontend\img" />
+      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\resources\META-INF\resources\img" />
       <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\webapp\images\logos" />
+      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\frontend\img" />
+      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\webapp\img" />
       <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\resources\META-INF\resources\images" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.srcom.ui.views" />
       <recent name="org.srcom.views.main" />
       <recent name="org.srcom.loomerapi" />
     </key>

@@ -1,28 +1,42 @@
 package org.srcom.ui.views;
 
+import java.lang.reflect.Type;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import backend.BankAccount;
 import backend.DummyData;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.*;
 import com.google.gson.internal.LinkedTreeMap;
-import com.vaadin.flow.component.AttachEvent;
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.DetachEvent;
-import com.vaadin.flow.component.UI;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.provider.DataProvider;
 import com.vaadin.flow.data.provider.Query;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.LocalDateRenderer;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
+import elemental.json.Json;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.apachecommons.CommonsLog;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.srcom.rest.EjecutaPac;
 import org.srcom.ui.components.Badge;
 import org.srcom.ui.components.FlexBoxLayout;
@@ -47,7 +61,24 @@ import javax.xml.crypto.Data;
 public class Expedientes extends ViewFrame {
 
 	public static final int MOBILE_BREAKPOINT = 480;
-	private Grid grid = new Grid<HashMap<String, String>>();
+
+	private TextField filterText = new TextField();
+
+	List<clExpedientes> lf = new ArrayList<clExpedientes>();
+
+
+
+	@Setter
+	@Getter
+	class clExpedientes {
+		String NOMBRE;
+		String APELLIDO;
+		String FHALTA;
+		String CDEXPAJE;
+		int	   CDASISTE;
+	}
+
+	private Grid<clExpedientes> grid = new Grid<>();
 
 
 	private Registration resizeListener;
@@ -57,9 +88,34 @@ public class Expedientes extends ViewFrame {
 	}
 
 	private Component createContent() {
-		FlexBoxLayout content = new FlexBoxLayout(createGrid());
+
+		VerticalLayout vl = new VerticalLayout();
+		FlexBoxLayout content = new FlexBoxLayout();
+
+		filterText.setClearButtonVisible(true);
+		filterText.setPlaceholder(getTranslation("buscar"));
+		filterText.addValueChangeListener(new HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<TextField, String>>() {
+			@Override
+			public void valueChanged(AbstractField.ComponentValueChangeEvent<TextField, String> textFieldStringComponentValueChangeEvent) {
+				if (filterText.getValue() == null || filterText.getValue().isEmpty()) {
+					grid.setItems(lf);
+				} else {
+					System.out.println("entramos" +  filterText.getValue());
+					grid.setItems(lf.stream().filter( c -> c.getNOMBRE().startsWith(filterText.getValue())));
+
+				}
+			}
+		});
+
+		vl.add(filterText);
+		vl.add(createGrid());
+
+		content.add(vl);
+
+
 		content.setHeightFull();
 		content.setPadding(Horizontal.RESPONSIVE_X, Top.RESPONSIVE_X);
+		content.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
 		return content;
 	}
 
@@ -72,96 +128,93 @@ public class Expedientes extends ViewFrame {
 		//grid.setDataProvider(DataProvider.ofCollection(DummyData.getBankAccounts()));
 
 
-		HashMap expedientesLista = new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS","F_QUERY",
+		String expedientesLista = new EjecutaPac().EjecutaPacStr("PAC_SHWEB_LISTAS","F_QUERY",
 		//		"SELECT CDASISTE, NBBENOM || ' ' || NBBEAPE1 NOMBRE, FHALTA, CDEXPAJE  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
-		"SELECT  NBBENOM || ' ' || NBBEAPE1 NOMBRE  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
+		"SELECT  EE.FHALTA, TO_CHAR(EA.FHOCURRE,'DD/MM/YYYY') FHOCURRE, EE.CDEXPAJE, EE.CDASISTE, EE.NBBENOM NOMBRE, EE.NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES ee, EX_ASISTENCIAS EA " +
+				"WHERE ee.cdasiste = ea.cdasiste AND ROWNUM < 5");
 
-		Collection<HashMap<String, Object>> lista = ((Collection<HashMap<String, Object>>) expedientesLista.get("RETURN"));
+		System.out.println("lista devuelta: " + expedientesLista);
+		try {
 
+			lf.clear();
 
-		/*Map<String, String> fakebean = new HashMap<>();
-		fakebean.put("firstName", "Olli5");
-		fakebean.put("secondName", "Pedro");*/
+			JSONObject jsonObject = new JSONObject(expedientesLista);
 
-		//List<HashMap> result = new ArrayList<HashMap>();
-
-		/*DataProvider<HashMap, Void> dataProvider = DataProvider.fromCallbacks(
-				// First callback fetches items based on a query
-				query -> {
-					int offset = query.getOffset();
-					int limit = query.getLimit();
-
-					List<HashMap> result = new ArrayList<HashMap>();
-					for (int i = offset; i < offset + limit; i++) {
-						HashMap m = new HashMap();
-						m.put("firstName", "Olli" + i);
-						m.put("secondName", "qqqqq" + i);
-						result.add(m);
-					}
-					return result.stream();
-				},
-				// Second callback fetches the number of items for a query
-				query -> {
-					return 2;
-				});*/
-
-		DataProvider dataProvider = DataProvider.ofCollection(lista);
-
-		System.out.println("lista" +  lista);
-		System.out.println("lista longitud " +  lista.size());
-
-		//LinkedTreeMap<Object,Object> t = (LinkedTreeMap) lista.iterator();
+			System.out.println("objeto" + jsonObject);
 
 
+			JSONArray lista = jsonObject.getJSONArray("RETURN");
+
+			System.out.println("lista" + lista);
+			for (int i = 0 ; i < lista.length(); i++) {
+
+				System.out.println("entramos");
+				JSONObject obj = lista.getJSONObject(i);
+				System.out.println("obj" + obj);
+				clExpedientes cl = new clExpedientes();
+				System.out.println("nombre" + obj.getString("NOMBRE"));
+				cl.setAPELLIDO(obj.getString("APELLIDO"));
+				cl.setNOMBRE(obj.getString("NOMBRE"));
+				cl.setCDASISTE(obj.getInt("CDASISTE"));
+				cl.setFHALTA(obj.getString("FHALTA"));
+				 if(!obj.isNull("CDEXPAJE")) {
+					 cl.setCDEXPAJE(obj.getString("CDEXPAJE"));
+				 }
+
+				lf.add(cl);
+			}
 
 
+			/*grid.addColumn(clExpedientes::getNOMBRE);
+			grid.addColumn(clExpedientes::getAPELLIDO);*/
+			grid.setItems(lf);
 
-		Grid grid = new Grid<HashMap<String, String>>();
-		grid.addColumn(fakeBean -> "hola").setHeader("FirstName").setWidth("270px").setFlexGrow(5);
-		grid.addColumn(fakeBean -> expedientesLista.get("RETURN")).setHeader("secondName").setWidth("270px").setFlexGrow(5);
+		} catch ( Exception e) {
+			System.out.println( e.toString());
 
-		grid.setDataProvider(dataProvider);
-
-		/*DataProvider consulta = DataProvider.fromStream(expedientesLista.values().stream());
-
-		System.out.println("Size provider:" + consulta.size();
-
-		//grid.setDataProvider(consulta);
-
-
-		grid.setId("expedientes");
-		grid.setSizeFull();
-
-		// "Mobile" column
-		//grid.addColumn(expedientesLista::get);
+		}
 
 
 
 
-		System.out.println("Cuantos:" + lista.size());
-		System.out.println("Cuantos:" + lista);
-
-		grid.setItems(lista);
-
-		System.out.println("Columnas:" + grid.getColumns());*/
-
-
-		//grid.addColumn(HashMap::entrySet);
-
-		// "Desktop" columns
-		/*grid.addColumn("CDASISTE")
+		grid.addColumn(clExpedientes::getCDASISTE )
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
-				//.setHeader("CDASISTE")
-				.setSortable(true);*/
+				.setHeader("Expediente")
+				.setSortable(true);
+		grid.addColumn(clExpedientes::getNOMBRE )
+				.setAutoWidth(true)
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("NOMBRE")
+				.setSortable(true);
+		grid.addColumn(clExpedientes::getAPELLIDO )
+				.setAutoWidth(true)
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("APELLIDO")
+				.setSortable(true);
+		grid.addColumn(clExpedientes::getCDEXPAJE )
+				.setAutoWidth(true)
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("CDEXPAJE")
+				.setSortable(true);
+		grid.addColumn(clExpedientes::getFHALTA )
+				.setAutoWidth(true)
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("FHALTA")
+				.setSortable(true);
+
 		/*grid.addColumn(new ComponentRenderer<>(this::createOwnerInfo))
 				.setHeader("Owner")
 				.setComparator((account1, account2) ->
 					account1.getOwner().compareToIgnoreCase(account2.getOwner()))
 				.setSortable(true)
-				.setWidth("200px");
-		grid.addColumn(new ComponentRenderer<>(this::createBankInfo))
+				.setWidth("200px");*/
+		/*grid.addColumn(new ComponentRenderer<>(this::createBankInfo))
 				.setComparator(BankAccount::getAccount)
 				.setHeader("Bank Account")
 				.setWidth("200px");
@@ -311,6 +364,17 @@ public class Expedientes extends ViewFrame {
 			wrapper.setAlignItems(Alignment.BASELINE);
 			wrapper.setFlexGrow(1, availability);
 			return wrapper;
+		}
+
+		private void configureFilter() {
+			filterText.setPlaceholder("Filter by name...");
+			filterText.setClearButtonVisible(true);
+			filterText.setValueChangeMode(ValueChangeMode.LAZY);
+			filterText.addValueChangeListener(e -> updateList());
+		}
+
+		private void updateList() {
+			//grid.setDragFilter(clExpedientes -> Getter);
 		}
 	}
 }

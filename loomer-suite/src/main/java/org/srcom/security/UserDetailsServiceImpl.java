@@ -46,6 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         List<Map> valor = (List<Map>) usuario.get("RETURN");
 
+
         usuEncontrado = valor.get(0).get("CDUSUARI").toString();
 
         VaadinSession.getCurrent().setAttribute("usuario", usuEncontrado);
