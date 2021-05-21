@@ -1,12 +1,17 @@
 package org.srcom.ui.views;
 
+import java.lang.reflect.Type;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import backend.BankAccount;
 import backend.DummyData;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.*;
 import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.DetachEvent;
@@ -23,6 +28,12 @@ import com.vaadin.flow.data.renderer.LocalDateRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
+import elemental.json.Json;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.apachecommons.CommonsLog;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.srcom.rest.EjecutaPac;
 import org.srcom.ui.components.Badge;
 import org.srcom.ui.components.FlexBoxLayout;
@@ -47,7 +58,16 @@ import javax.xml.crypto.Data;
 public class Expedientes extends ViewFrame {
 
 	public static final int MOBILE_BREAKPOINT = 480;
-	private Grid grid = new Grid<HashMap<String, String>>();
+
+	@Setter
+	@Getter
+	class clExpedientes {
+		String NOMBRE;
+		String APELLIDO;
+		int		CDASISTE;
+	}
+
+	private Grid<clExpedientes> grid = new Grid<>();
 
 
 	private Registration resizeListener;
@@ -72,76 +92,58 @@ public class Expedientes extends ViewFrame {
 		//grid.setDataProvider(DataProvider.ofCollection(DummyData.getBankAccounts()));
 
 
-		HashMap expedientesLista = new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS","F_QUERY",
+		String expedientesLista = new EjecutaPac().EjecutaPacStr("PAC_SHWEB_LISTAS","F_QUERY",
 		//		"SELECT CDASISTE, NBBENOM || ' ' || NBBEAPE1 NOMBRE, FHALTA, CDEXPAJE  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
-		"SELECT  NBBENOM || ' ' || NBBEAPE1 NOMBRE  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
+		"SELECT  CDASISTE, NBBENOM NOMBRE, NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
 
-		Collection<HashMap<String, Object>> lista = ((Collection<HashMap<String, Object>>) expedientesLista.get("RETURN"));
+		System.out.println("lista devuelta: " + expedientesLista);
+		try {
 
 
-		/*Map<String, String> fakebean = new HashMap<>();
-		fakebean.put("firstName", "Olli5");
-		fakebean.put("secondName", "Pedro");*/
-
-		//List<HashMap> result = new ArrayList<HashMap>();
-
-		/*DataProvider<HashMap, Void> dataProvider = DataProvider.fromCallbacks(
-				// First callback fetches items based on a query
-				query -> {
-					int offset = query.getOffset();
-					int limit = query.getLimit();
-
-					List<HashMap> result = new ArrayList<HashMap>();
-					for (int i = offset; i < offset + limit; i++) {
-						HashMap m = new HashMap();
-						m.put("firstName", "Olli" + i);
-						m.put("secondName", "qqqqq" + i);
-						result.add(m);
-					}
-					return result.stream();
-				},
-				// Second callback fetches the number of items for a query
-				query -> {
-					return 2;
-				});*/
-
-		DataProvider dataProvider = DataProvider.ofCollection(lista);
-
-		System.out.println("lista" +  lista);
-		System.out.println("lista longitud " +  lista.size());
-
-		//LinkedTreeMap<Object,Object> t = (LinkedTreeMap) lista.iterator();
+			List<clExpedientes> lf = new ArrayList<clExpedientes>();
 
 
 
+			JSONObject jsonObject = new JSONObject(expedientesLista);
+
+			System.out.println("objeto" + jsonObject);
 
 
-		Grid grid = new Grid<HashMap<String, String>>();
-		grid.addColumn(fakeBean -> "hola").setHeader("FirstName").setWidth("270px").setFlexGrow(5);
-		grid.addColumn(fakeBean -> expedientesLista.get("RETURN")).setHeader("secondName").setWidth("270px").setFlexGrow(5);
+			JSONArray lista = jsonObject.getJSONArray("RETURN");
 
-		grid.setDataProvider(dataProvider);
+			System.out.println("lista" + lista);
+			for (int i = 0 ; i < lista.length(); i++) {
 
-		/*DataProvider consulta = DataProvider.fromStream(expedientesLista.values().stream());
+				System.out.println("entramos");
+				JSONObject obj = lista.getJSONObject(i);
+				System.out.println("obj" + obj);
+				clExpedientes cl = new clExpedientes();
+				System.out.println("nombre" + obj.getString("NOMBRE"));
+				cl.setAPELLIDO(obj.getString("APELLIDO"));
+				cl.setNOMBRE(obj.getString("NOMBRE"));
+				cl.setCDASISTE(obj.getInt("CDASISTE"));
 
-		System.out.println("Size provider:" + consulta.size();
-
-		//grid.setDataProvider(consulta);
-
-
-		grid.setId("expedientes");
-		grid.setSizeFull();
-
-		// "Mobile" column
-		//grid.addColumn(expedientesLista::get);
+				lf.add(cl);
+			}
 
 
+			/*grid.addColumn(clExpedientes::getNOMBRE);
+			grid.addColumn(clExpedientes::getAPELLIDO);*/
+			grid.setItems(lf);
 
+		} catch ( Exception e) {
+			System.out.println( e.toString());
 
-		System.out.println("Cuantos:" + lista.size());
+		}
+
+		/*TypeToken<List<clExpedientes>> token = new TypeToken<List<clExpedientes>>(){};
+		Gson gson = new Gson();
+		List<clExpedientes> personList = gson.fromJson( lista, token.getType());*/
+
+		/*System.out.println("Cuantos:" + lista.size());
 		System.out.println("Cuantos:" + lista);
 
-		grid.setItems(lista);
+		//grid.setItems(lista);
 
 		System.out.println("Columnas:" + grid.getColumns());*/
 
@@ -149,12 +151,24 @@ public class Expedientes extends ViewFrame {
 		//grid.addColumn(HashMap::entrySet);
 
 		// "Desktop" columns
-		/*grid.addColumn("CDASISTE")
+		grid.addColumn(clExpedientes::getCDASISTE )
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
-				//.setHeader("CDASISTE")
-				.setSortable(true);*/
+				.setHeader("Expediente")
+				.setSortable(true);
+		grid.addColumn(clExpedientes::getNOMBRE )
+				.setAutoWidth(true)
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("NOMBRE")
+				.setSortable(true);
+		grid.addColumn(clExpedientes::getAPELLIDO )
+				.setAutoWidth(true)
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("APELLIDO")
+				.setSortable(true);
 		/*grid.addColumn(new ComponentRenderer<>(this::createOwnerInfo))
 				.setHeader("Owner")
 				.setComparator((account1, account2) ->

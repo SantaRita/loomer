@@ -1,5 +1,6 @@
 package org.srcom.ui.components.navigation.bar;
 
+import ch.carnet.kasparscherrer.LanguageSelect;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasValue;
@@ -15,6 +16,7 @@ import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.tabs.Tab;
@@ -31,6 +33,7 @@ import org.srcom.ui.views.Administracion;
 import org.srcom.ui.views.main.MainView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 @CssImport("./styles/components/app-bar.css")
 public class AppBar extends FlexBoxLayout {
@@ -38,6 +41,9 @@ public class AppBar extends FlexBoxLayout {
 	private String CLASS_NAME = "app-bar";
 
 	private FlexBoxLayout container;
+
+	private LanguageSelect langSelect;
+
 
 	private Button menuIcon;
 	private Button contextIcon;
@@ -152,9 +158,10 @@ public class AppBar extends FlexBoxLayout {
 
 				});
 
-		/*cbIdiomas.setLabel(getTranslation("lenguaje" + ":"));
+		boolean useLanguageCookies = true;
 
-		contextMenu.addItem(cbIdiomas);*/
+		/*langSelect = new LanguageSelect(useLanguageCookies, new Locale("en"));
+		contextMenu.addItem(langSelect);*/
 		/*contextMenu.addItem( getTranslation(getTranslation("language")),
 				e -> Notification.show("Not implemented yet.", 3000,
 						Notification.Position.BOTTOM_CENTER));*/

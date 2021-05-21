@@ -71,14 +71,14 @@ public class LoginView extends VerticalLayout implements LocaleChangeObserver {
         });
 
 
-        /*boolean useLanguageCookies = true;
+        boolean useLanguageCookies = true;
 
         langSelect = new LanguageSelect(useLanguageCookies, new Locale("en"));
 
 
         Button button = new Button("Register");
 
-        add(login, button);*/
+        add(login, button);
 
         Object a = null;
 
