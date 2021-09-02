@@ -9,26 +9,29 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71197c87-708f-4d31-a251-db6c41976157" name="Default Changelist" comment="subida portatil">
+      <change afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/splash-screen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021_9_04_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021_9_04__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021_11_51_[Default_Changelist]/icon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021_11_51_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021_11_51__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/rest/EjecutaPac.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/rest/EjecutaPac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/components/navigation/bar/AppBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/components/navigation/bar/AppBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/Expedientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/Expedientes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/main/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/java/org/srcom/ui/views/main/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/resources/LanguageSelect.properties" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/LanguageSelect.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loomer-suite/src/main/resources/LanguageSelecten.properties" beforeDir="false" afterPath="$PROJECT_DIR$/loomer-suite/src/main/resources/LanguageSelecten.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +46,8 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -55,6 +58,7 @@
   </component>
   <component name="ProjectId" id="1sCg23neJLZ6QSIZrub0xxku9Yo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -67,27 +71,26 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/loomer-suite/src/main/resources/META-INF/resources/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/loomer-suite/src/main/resources" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.49425286" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\resources\META-INF\resources\img" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\webapp\images\logos" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\frontend\img" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\webapp\img" />
-      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\resources\META-INF\resources\images" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.srcom.ui.views" />
       <recent name="org.srcom.views.main" />
       <recent name="org.srcom.loomerapi" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\proyectosCSI\proyectoloomer\loomer\loomer-suite\src\main\resources" />
+      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\webapp\images\logos" />
+      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main\resources\META-INF\resources\images" />
+      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\src\main" />
+      <recent name="E:\Aplicaciones\IntelliJ\workspace\loomer\loomer-suite\frontend" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -200,7 +203,7 @@
       <item itemvalue="Maven.loomer-suite run" />
     </list>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -244,7 +247,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -254,6 +269,32 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="subida" />
     <option name="LAST_COMMIT_MESSAGE" value="subida" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1322" height="161" key="GridCell.Tab.0.bottom" timestamp="1622114253163">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="161" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1622114253163" />
+    <state width="1322" height="161" key="GridCell.Tab.0.center" timestamp="1622114253163">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="161" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1622114253163" />
+    <state width="1322" height="161" key="GridCell.Tab.0.left" timestamp="1622114253162">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="161" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1622114253162" />
+    <state width="1322" height="161" key="GridCell.Tab.0.right" timestamp="1622114253163">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="161" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1622114253163" />
+    <state x="390" y="104" width="925" height="530" key="find.popup" timestamp="1622028101788">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="390" y="104" width="925" height="530" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1622028101788" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1621954164112">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1621954164112" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

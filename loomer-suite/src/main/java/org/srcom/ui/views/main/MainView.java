@@ -13,6 +13,7 @@ import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.*;
+import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import lombok.extern.apachecommons.CommonsLog;
 import org.srcom.ui.components.FlexBoxLayout;
@@ -21,6 +22,7 @@ import org.srcom.ui.components.navigation.bar.TabBar;
 import org.srcom.ui.components.navigation.drawer.NaviDrawer;
 import org.srcom.ui.components.navigation.drawer.NaviItem;
 import org.srcom.ui.components.navigation.drawer.NaviMenu;
+import org.srcom.ui.util.LumoStyles;
 import org.srcom.ui.util.UIUtils;
 import org.srcom.ui.util.css.Overflow;
 import org.srcom.ui.views.Expedientes;
@@ -67,6 +69,8 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
     private AppBar appBar;
 
     public MainView() {
+
+        setTheme(Lumo.LIGHT);
         VaadinSession.getCurrent()
                 .setErrorHandler((ErrorHandler) errorEvent -> {
                     log.error("Uncaught UI exception",
@@ -214,6 +218,10 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
 
         settings.addFavIcon("icon", "frontend/images/favicons/favicon.ico",
                 "256x256");
+
+
+        settings.addInlineFromFile("splash-screen.html", InitialPageSettings.WrapMode.NONE);
+
     }
 
     @Override
@@ -243,6 +251,8 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
             afterNavigationWithoutTabs(event);
         }
     }
+
+
 
     private void afterNavigationWithTabs(AfterNavigationEvent e) {
         NaviItem active = getActiveItem(e);

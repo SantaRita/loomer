@@ -1,37 +1,20 @@
 package org.srcom.ui.views;
 
-import java.lang.reflect.Type;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 import backend.BankAccount;
-import backend.DummyData;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.*;
-import com.google.gson.internal.LinkedTreeMap;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import com.vaadin.flow.component.*;
-import com.vaadin.flow.component.grid.ColumnTextAlign;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.provider.DataProvider;
-import com.vaadin.flow.data.provider.Query;
-import com.vaadin.flow.data.renderer.ComponentRenderer;
-import com.vaadin.flow.data.renderer.LocalDateRenderer;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
-import elemental.json.Json;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.apachecommons.CommonsLog;
@@ -54,8 +37,10 @@ import org.srcom.ui.util.css.lumo.BadgeShape;
 import org.srcom.ui.util.css.lumo.BadgeSize;
 import org.srcom.ui.views.main.MainView;
 
-import javax.xml.crypto.Data;
+import java.util.ArrayList;
+import java.util.List;
 
+@CommonsLog
 @PageTitle("Loomer")
 @Route(value = "expedientes", layout = MainView.class)
 public class Expedientes extends ViewFrame {
@@ -65,6 +50,9 @@ public class Expedientes extends ViewFrame {
 	private TextField filterText = new TextField();
 
 	List<clExpedientes> lf = new ArrayList<clExpedientes>();
+
+	TextField txNombre = new TextField();
+
 
 
 
@@ -89,11 +77,28 @@ public class Expedientes extends ViewFrame {
 
 	private Component createContent() {
 
+		;
+
+		HorizontalLayout hl = new HorizontalLayout();
 		VerticalLayout vl = new VerticalLayout();
 		FlexBoxLayout content = new FlexBoxLayout();
+		Button btBuscar = new Button();
+		btBuscar.setText(getTranslation("buscar"));
+
+		btBuscar.addClickListener(new ComponentEventListener<ClickEvent<Button>>() {
+			@Override
+			public void onComponentEvent(ClickEvent<Button> buttonClickEvent) {
+				// PULSAMOS EL BOTÓN DE BUSCAR
+				String consulta = "SELECT  EE.FHALTA, TO_CHAR(EA.FHOCURRE,'DD/MM/YYYY') FHOCURRE, EE.CDEXPAJE, EE.CDASISTE, EE.NBBENOM NOMBRE, EE.NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES ee, EX_ASISTENCIAS EA " +
+						"WHERE ee.cdasiste = ea.cdasiste AND ROWNUM < 20";
+				if ( txNombre!=null )
+					consulta += " AND UPPER(EE.NBBENOM) LIKE '%"+ txNombre.getValue().toUpperCase() + "%' ";
+				createGrid(consulta);
+			}
+		});
 
 		filterText.setClearButtonVisible(true);
-		filterText.setPlaceholder(getTranslation("buscar"));
+		filterText.setPlaceholder(getTranslation("filtrar"));
 		filterText.addValueChangeListener(new HasValue.ValueChangeListener<AbstractField.ComponentValueChangeEvent<TextField, String>>() {
 			@Override
 			public void valueChanged(AbstractField.ComponentValueChangeEvent<TextField, String> textFieldStringComponentValueChangeEvent) {
@@ -108,10 +113,23 @@ public class Expedientes extends ViewFrame {
 		});
 
 		vl.add(filterText);
-		vl.add(createGrid());
 
+
+		//createGrid("SELECT  EE.FHALTA, TO_CHAR(EA.FHOCURRE,'DD/MM/YYYY') FHOCURRE, EE.CDEXPAJE, EE.CDASISTE, EE.NBBENOM NOMBRE, EE.NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES ee, EX_ASISTENCIAS EA " +
+		//		"WHERE ee.cdasiste = ea.cdasiste AND ROWNUM < 5");
+		createGrid(null);
+		vl.add(grid);
+
+		txNombre.setPlaceholder(getTranslation("nombre"));
+
+		TextField txNIF = new TextField();
+		txNIF.setPlaceholder(getTranslation("nif"));
+
+		hl.add(txNombre, txNIF, btBuscar);
+
+		setViewHeader(hl);
+		hl.setMargin(true);
 		content.add(vl);
-
 
 		content.setHeightFull();
 		content.setPadding(Horizontal.RESPONSIVE_X, Top.RESPONSIVE_X);
@@ -119,7 +137,7 @@ public class Expedientes extends ViewFrame {
 		return content;
 	}
 
-	private Grid createGrid() {
+	private void createGrid(String consulta) {
 		//grid = new Grid<HashMap<String, Object>>();
 		//grid.addSelectionListener(event -> event.getFirstSelectedItem().ifPresent(this::viewDetails));
 		//grid.addThemeName("mobile");
@@ -127,25 +145,33 @@ public class Expedientes extends ViewFrame {
 		// LLENAMOS LA LISTA DEL GRID CON LOS EXPEDIENTES CON SETDATAPROVIDER
 		//grid.setDataProvider(DataProvider.ofCollection(DummyData.getBankAccounts()));
 
+		grid.setSizeFull();
+		grid.removeAllColumns();
 
-		String expedientesLista = new EjecutaPac().EjecutaPacStr("PAC_SHWEB_LISTAS","F_QUERY",
-		//		"SELECT CDASISTE, NBBENOM || ' ' || NBBEAPE1 NOMBRE, FHALTA, CDEXPAJE  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
-		"SELECT  EE.FHALTA, TO_CHAR(EA.FHOCURRE,'DD/MM/YYYY') FHOCURRE, EE.CDEXPAJE, EE.CDASISTE, EE.NBBENOM NOMBRE, EE.NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES ee, EX_ASISTENCIAS EA " +
-				"WHERE ee.cdasiste = ea.cdasiste AND ROWNUM < 5");
+		//consulta = "SELECT  EE.FHALTA, TO_CHAR(EA.FHOCURRE,'DD/MM/YYYY') FHOCURRE, EE.CDEXPAJE, EE.CDASISTE, EE.NBBENOM NOMBRE, EE.NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES ee, EX_ASISTENCIAS EA " +
+		//		"WHERE ee.cdasiste = ea.cdasiste AND ROWNUM < 5";
 
-		System.out.println("lista devuelta: " + expedientesLista);
+
+		String expedientesLista = null;
+		
+		if ( consulta!=null ) {
+			expedientesLista = new EjecutaPac().EjecutaPacStr("PAC_SHWEB_LISTAS", "F_QUERY", consulta);
+			// hide the splash screen after the main view is loaded
+			UI.getCurrent().getPage().executeJs("document.querySelector('#splash-screen').classList.add('loaded')");
+		}
+		/*String expedientesLista = new EjecutaPac().EjecutaPacStr("PAC_SHWEB_LISTAS","F_QUERY",
+				//		"SELECT CDASISTE, NBBENOM || ' ' || NBBEAPE1 NOMBRE, FHALTA, CDEXPAJE  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
+				"SELECT  EE.FHALTA, TO_CHAR(EA.FHOCURRE,'DD/MM/YYYY') FHOCURRE, EE.CDEXPAJE, EE.CDASISTE, EE.NBBENOM NOMBRE, EE.NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES ee, EX_ASISTENCIAS EA " +
+						"WHERE ee.cdasiste = ea.cdasiste AND ROWNUM < 5");*/
+
 		try {
 
 			lf.clear();
 
 			JSONObject jsonObject = new JSONObject(expedientesLista);
 
-			System.out.println("objeto" + jsonObject);
-
-
 			JSONArray lista = jsonObject.getJSONArray("RETURN");
 
-			System.out.println("lista" + lista);
 			for (int i = 0 ; i < lista.length(); i++) {
 
 				System.out.println("entramos");
@@ -165,17 +191,12 @@ public class Expedientes extends ViewFrame {
 			}
 
 
-			/*grid.addColumn(clExpedientes::getNOMBRE);
-			grid.addColumn(clExpedientes::getAPELLIDO);*/
 			grid.setItems(lf);
 
 		} catch ( Exception e) {
-			System.out.println( e.toString());
+			log.error( e.toString() );
 
 		}
-
-
-
 
 		grid.addColumn(clExpedientes::getCDASISTE )
 				.setAutoWidth(true)
@@ -208,29 +229,8 @@ public class Expedientes extends ViewFrame {
 				.setHeader("FHALTA")
 				.setSortable(true);
 
-		/*grid.addColumn(new ComponentRenderer<>(this::createOwnerInfo))
-				.setHeader("Owner")
-				.setComparator((account1, account2) ->
-					account1.getOwner().compareToIgnoreCase(account2.getOwner()))
-				.setSortable(true)
-				.setWidth("200px");*/
-		/*grid.addColumn(new ComponentRenderer<>(this::createBankInfo))
-				.setComparator(BankAccount::getAccount)
-				.setHeader("Bank Account")
-				.setWidth("200px");
-		grid.addColumn(new ComponentRenderer<>(this::createAvailability))
-				.setAutoWidth(true)
-				.setComparator(BankAccount::getAvailability)
-				.setFlexGrow(0)
-				.setHeader("Availability ($)")
-				.setTextAlign(ColumnTextAlign.END);
-		grid.addColumn(new LocalDateRenderer<>(BankAccount::getUpdated, DateTimeFormatter.ofPattern("MMM dd, YYYY")))
-				.setAutoWidth(true)
-				.setComparator(BankAccount::getUpdated)
-				.setFlexGrow(0)
-				.setHeader("Updated");*/
 
-		return grid;
+		//return grid;
 	}
 
 	private BankAccountMobileTemplate getMobileTemplate(BankAccount bankAccount) {
@@ -278,7 +278,7 @@ public class Expedientes extends ViewFrame {
 
 	@Override
 	protected void onDetach(DetachEvent detachEvent) {
-		resizeListener.remove();
+		/*resizeListener.remove();*/
 		super.onDetach(detachEvent);
 	}
 
