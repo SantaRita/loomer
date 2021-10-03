@@ -3,7 +3,6 @@ package org.srcom.ui.views;
 import backend.BankAccount;
 import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
@@ -15,8 +14,7 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
-import lombok.Getter;
-import lombok.Setter;
+import backend.entidades.Expediente;
 import lombok.extern.apachecommons.CommonsLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,24 +47,13 @@ public class Expedientes extends ViewFrame {
 
 	private TextField filterText = new TextField();
 
-	List<clExpedientes> lf = new ArrayList<clExpedientes>();
+	List<Expediente> lf = new ArrayList<Expediente>();
 
 	TextField txNombre = new TextField();
 
 
 
-
-	@Setter
-	@Getter
-	class clExpedientes {
-		String NOMBRE;
-		String APELLIDO;
-		String FHALTA;
-		String CDEXPAJE;
-		int	   CDASISTE;
-	}
-
-	private Grid<clExpedientes> grid = new Grid<>();
+	private Grid<Expediente> grid = new Grid<>();
 
 
 	private Registration resizeListener;
@@ -157,7 +144,7 @@ public class Expedientes extends ViewFrame {
 		if ( consulta!=null ) {
 			expedientesLista = new EjecutaPac().EjecutaPacStr("PAC_SHWEB_LISTAS", "F_QUERY", consulta);
 			// hide the splash screen after the main view is loaded
-			UI.getCurrent().getPage().executeJs("document.querySelector('#splash-screen').classList.add('loaded')");
+			//UI.getCurrent().getPage().executeJs("document.querySelector('#splash-screen').classList.add('loaded')");
 		}
 		/*String expedientesLista = new EjecutaPac().EjecutaPacStr("PAC_SHWEB_LISTAS","F_QUERY",
 				//		"SELECT CDASISTE, NBBENOM || ' ' || NBBEAPE1 NOMBRE, FHALTA, CDEXPAJE  FROM EX_EXPEDIENTES WHERE ROWNUM < 5");
@@ -177,7 +164,7 @@ public class Expedientes extends ViewFrame {
 				System.out.println("entramos");
 				JSONObject obj = lista.getJSONObject(i);
 				System.out.println("obj" + obj);
-				clExpedientes cl = new clExpedientes();
+				Expediente cl = new Expediente();
 				System.out.println("nombre" + obj.getString("NOMBRE"));
 				cl.setAPELLIDO(obj.getString("APELLIDO"));
 				cl.setNOMBRE(obj.getString("NOMBRE"));
@@ -198,31 +185,31 @@ public class Expedientes extends ViewFrame {
 
 		}
 
-		grid.addColumn(clExpedientes::getCDASISTE )
+		grid.addColumn(Expediente::getCDASISTE )
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
 				.setHeader("Expediente")
 				.setSortable(true);
-		grid.addColumn(clExpedientes::getNOMBRE )
+		grid.addColumn(Expediente::getNOMBRE )
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
 				.setHeader("NOMBRE")
 				.setSortable(true);
-		grid.addColumn(clExpedientes::getAPELLIDO )
+		grid.addColumn(Expediente::getAPELLIDO )
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
 				.setHeader("APELLIDO")
 				.setSortable(true);
-		grid.addColumn(clExpedientes::getCDEXPAJE )
+		grid.addColumn(Expediente::getCDEXPAJE )
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
 				.setHeader("CDEXPAJE")
 				.setSortable(true);
-		grid.addColumn(clExpedientes::getFHALTA )
+		grid.addColumn(Expediente::getFHALTA )
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
@@ -374,7 +361,7 @@ public class Expedientes extends ViewFrame {
 		}
 
 		private void updateList() {
-			//grid.setDragFilter(clExpedientes -> Getter);
+			//grid.setDragFilter(Expediente -> Getter);
 		}
 	}
 }

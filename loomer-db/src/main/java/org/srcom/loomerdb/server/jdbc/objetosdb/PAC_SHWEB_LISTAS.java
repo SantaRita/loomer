@@ -9,13 +9,17 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Component;
 import org.srcom.loomerdb.server.jdbc.util.ConversionUtil;
 
 import javax.sql.DataSource;
 
-
 public class PAC_SHWEB_LISTAS extends AccesoPL {
     static Log logger = LogFactory.getLog(PAC_SHWEB_LISTAS.class);
+
+
     private Connection conn = null;
 
 
@@ -58,13 +62,16 @@ public class PAC_SHWEB_LISTAS extends AccesoPL {
     
     
     // POBLACIONES
+    @Cacheable("poblaciones")
     public HashMap ejecutaPAC_SHWEB_LISTAS__F_GET_LSTPOBLACIONES(String pPROVINCIA) throws Exception {
         return this.callPAC_SHWEB_LISTAS__F_GET_LSTPOBLACIONES(pPROVINCIA);
     }
-    
+
+
     private HashMap callPAC_SHWEB_LISTAS__F_GET_LSTPOBLACIONES(String pPROVINCIA) throws Exception {
     	System.out.println("f_get_lstpoblaciones cond codigo de provincia: " + pPROVINCIA);
         String callQuery="{?=call PAC_SHWEB_LISTAS.F_GET_LSTPOBLACIONES(?)}";
+
         CallableStatement cStmt=conn.prepareCall(callQuery);
         cStmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR); // Valor de "RETURN"
         cStmt.setObject (2, pPROVINCIA);
@@ -74,6 +81,7 @@ public class PAC_SHWEB_LISTAS extends AccesoPL {
             retVal.put("RETURN", cStmt.getObject(1));
         }
         catch (SQLException e) {
+            System.out.println(e);
             retVal.put("RETURN", null);
         }
         
@@ -848,6 +856,7 @@ public class PAC_SHWEB_LISTAS extends AccesoPL {
     }    
 
     private HashMap callPAC_SHWEB_LISTAS__F_GET_DIVISAS() throws Exception {
+        System.out.println("divisas_________");
         String callQuery="{?=call PAC_SHWEB_LISTAS.F_GET_DIVISAS()}";
         CallableStatement cStmt=conn.prepareCall(callQuery);
         cStmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR); // Valor de "RETURN"
@@ -907,6 +916,7 @@ public class PAC_SHWEB_LISTAS extends AccesoPL {
     
    
     private HashMap callPAC_SHWEB_LISTAS__F_QUERY( String pCONSULTA) throws Exception {
+        System.out.println("Fquery con " + pCONSULTA);
         String callQuery="{?=call PAC_SHWEB_LISTAS.F_QUERY(?)}";
         CallableStatement cStmt=conn.prepareCall(callQuery);
         cStmt.registerOutParameter(1, oracle.jdbc.OracleTypes.CURSOR); // Valor de "RETURN"

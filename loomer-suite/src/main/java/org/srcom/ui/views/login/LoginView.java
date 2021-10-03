@@ -21,9 +21,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.srcom.rest.EjecutaPac;
 import org.srcom.security.CustomRequestCache;
 
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -55,10 +57,39 @@ public class LoginView extends VerticalLayout implements LocaleChangeObserver {
 ;                final Authentication authentication = authenticationManager
                         .authenticate(new UsernamePasswordAuthenticationToken(e.getUsername(), e.getPassword())); //
 
+
+
+                // inicializamos variables en memoria
+
+                  /*  HashMap pob =  new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS","F_GET_LSTPOBLACIONES","-1");
+                    //List<Map> valor = (List<Map>) usuario.get("RETURN");
+                    UI.getCurrent().getSession().setAttribute("poblaciones", pob);*/
+
+
+                    HashMap div = new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS", "F_GET_DIVISAS");
+                    UI.getCurrent().getSession().setAttribute("divisas",div);
+
+
+                    String prv = new EjecutaPac().EjecutaPacLista("PAC_SHWEB_LISTAS", "F_GET_LSTPROVINCIAS", "-1");
+                    UI.getCurrent().getSession().setAttribute("provincias",prv);
+
+
+                    String data = new EjecutaPac().EjecutaPacLista("PAC_SHWEB_LISTAS", "F_GET_LSTCOMPANIAS", "-1" );
+                    UI.getCurrent().getSession().setAttribute("companias",data);
+
+
+                    HashMap ctr = new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS", "F_GET_LSTCONTRATOS", "-1");
+                    UI.getCurrent().getSession().setAttribute("contratos",ctr);
+
+
+                    HashMap pais=  new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS", "F_GET_LSTPAISES");
+                    UI.getCurrent().getSession().setAttribute("paises",pais);
+
                 // if authentication was successful we will update the security context and redirect to the page requested first
                 SecurityContextHolder.getContext().setAuthentication(authentication); //
                 login.close(); //
                 UI.getCurrent().navigate(requestCache.resolveRedirectUrl()); //
+
 
             } catch (AuthenticationException ex) { //
                 // show default error message

@@ -22,8 +22,10 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
+import com.vaadin.flow.theme.lumo.Lumo;
 import org.srcom.ui.components.FlexBoxLayout;
 import org.srcom.ui.components.navigation.tab.NaviTab;
 import org.srcom.ui.components.navigation.tab.NaviTabs;
@@ -154,6 +156,20 @@ public class AppBar extends FlexBoxLayout {
 					//UI.getCurrent().getPage().setLocation("/logout")
 					//UI.getCurrent().navigate(MainView.class);
 					VaadinSession.getCurrent().getSession().invalidate();
+
+				});
+
+		contextMenu.addItem(getTranslation("cambiartema" ),
+				e -> {
+
+					ThemeList themeList = UI.getCurrent().getElement().getThemeList(); //
+
+					if (themeList.contains(Lumo.DARK)) { //
+						themeList.remove(Lumo.DARK);
+						themeList.add(Lumo.LIGHT);
+					} else {
+						themeList.add(Lumo.DARK);
+					}
 
 				});
 

@@ -1,4 +1,4 @@
-package org.srcom.ui.views;
+package org.srcom.rest;
 
 import lombok.Getter;
 import lombok.Setter;

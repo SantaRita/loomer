@@ -1,8 +1,10 @@
 package org.srcom.loomerdb.servicerest;
 
+import com.google.gson.Gson;
 import lombok.extern.apachecommons.CommonsLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
@@ -29,11 +31,14 @@ public class EjecutarSentencia {
             consumes = "application/json"
     )
     @ResponseBody
+    @Cacheable(value = "cache", condition="#funcion == 'F_GET_LSTPOBLACIONES'")
     public HashMap ejecutadb(@RequestParam String paquete,
                              @RequestParam String funcion,
                              @RequestBody Object... parameters) throws NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InstantiationException, InvocationTargetException, SQLException {
 
+        Boolean tieneParametros  = true;
 
+        System.out.println("Dentro ejecutadb" + paquete + " funcion " +  funcion + " parametros: " + parameters.length );
 
         String classPath = "org.srcom.loomerdb.server.jdbc.objetosdb." + paquete.toUpperCase();
 
@@ -49,11 +54,25 @@ public class EjecutarSentencia {
         Object[] parameterInput = new Object [parameters.length];
 
 
+
+        //Leemos el json con los parametros
+
         for (int i = 0; i < parameters.length; i++) {
 
             Map<String, Object> json = (Map<String, Object>) parameters[i];
 
-            if (parameters[i].getClass().equals(Integer.class)) {
+            System.out.println("Parametro" + json);
+
+            System.out.println("Valor:" + json.get("valor"));
+
+            if ( json.get("valor") == null ) {
+                tieneParametros = false;
+                break;
+            }
+
+            System.out.println("Tipo" + json.get("valor").getClass());
+            if (json.get("valor").getClass().toString().equals("class java.lang.Integer")) {
+                System.out.println("Es BigDecimal");
                 parameterTypes[i] = BigDecimal.class;
                 parameterInput[i] = new BigDecimal((Integer) json.get("valor"));
             } else {
@@ -62,12 +81,27 @@ public class EjecutarSentencia {
             }
         }
 
+        Method method = null;
+        HashMap hm;
 
-        Method method = objetoDb.getClass().getDeclaredMethod("ejecuta" + paquete.toUpperCase() + "__" + funcion.toUpperCase(),parameterTypes);
-        log.info( method.getName());
 
-        method.setAccessible(true);
-        HashMap hm = (HashMap) method.invoke(objetoDb,parameterInput);
+        if ( tieneParametros )   {
+            method = objetoDb.getClass().getDeclaredMethod("ejecuta" + paquete.toUpperCase() + "__" + funcion.toUpperCase(),parameterTypes);
+            method.setAccessible(true);
+
+            hm = (HashMap) method.invoke(objetoDb,parameterInput);
+
+
+        } else {
+            method = objetoDb.getClass().getDeclaredMethod("ejecuta" + paquete.toUpperCase() + "__" + funcion.toUpperCase());
+            method.setAccessible(true);
+            hm = (HashMap) method.invoke(objetoDb);
+
+        }
+        log.info( "Metodo " + method.toString());
+
+
+
 
         con.close();
         return new HashMap(hm);

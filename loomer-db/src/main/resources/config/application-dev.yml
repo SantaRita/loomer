@@ -16,6 +16,12 @@ spring:
     url: jdbc:oracle:thin:@10.101.7.16:1521:SIAMA
     username: AMA_ADMON
 
+logging:
+  level:
+    org:
+      springframework:
+        cache: TRACE
+
 
   main:
     banner-mode: 'off'

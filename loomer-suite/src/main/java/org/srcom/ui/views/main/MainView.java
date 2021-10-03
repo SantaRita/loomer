@@ -16,6 +16,8 @@ import com.vaadin.flow.server.*;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import lombok.extern.apachecommons.CommonsLog;
+import org.srcom.rest.EjecutaPac;
+import org.srcom.rest.Generico0;
 import org.srcom.ui.components.FlexBoxLayout;
 import org.srcom.ui.components.navigation.bar.AppBar;
 import org.srcom.ui.components.navigation.bar.TabBar;
@@ -25,11 +27,16 @@ import org.srcom.ui.components.navigation.drawer.NaviMenu;
 import org.srcom.ui.util.LumoStyles;
 import org.srcom.ui.util.UIUtils;
 import org.srcom.ui.util.css.Overflow;
+import org.srcom.ui.views.AltaExpedientes;
 import org.srcom.ui.views.Expedientes;
 import org.srcom.ui.views.Administracion;
 import org.srcom.ui.views.Payments;
 import org.srcom.ui.views.personnel.Accountants;
 import org.srcom.ui.views.personnel.Managers;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @CommonsLog
 @CssImport(value = "./styles/components/charts.css", themeFor = "vaadin-chart", include = "vaadin-chart-default-theme")
@@ -44,7 +51,7 @@ import org.srcom.ui.views.personnel.Managers;
 @CssImport("./styles/lumo/typography.css")
 @CssImport("./styles/misc/box-shadow-borders.css")
 @CssImport(value = "./styles/styles.css", include = "lumo-badge")
-@JsModule("@vaadin/vaadin-lumo-styles/badge")
+@JsModule("@vaadin/vaadin-lumo-styles/presets/compact.js")
 @PWA(name = "loomer-suite", shortName = "loomer-suite", enableInstallPrompt = false)
 //@PWA(name = "My Starter Project", shortName = "My Starter Project", iconPath = "images/logo-logoapp.png", backgroundColor = "#233348", themeColor = "#233348")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
@@ -91,6 +98,10 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
 
         // Configure the headers and footers (optional)
         initHeadersAndFooters();
+
+
+        //
+        initVariablesMemoria();
     }
 
     /**
@@ -122,7 +133,7 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
      */
     private void initNaviItems() {
         NaviMenu menu = naviDrawer.getMenu();
-        menu.addNaviItem(VaadinIcon.HOME, "Expedientes", Expedientes.class);
+        menu.addNaviItem(VaadinIcon.HOME, "Alta de Expedientes", AltaExpedientes.class);
         menu.addNaviItem(VaadinIcon.CREDIT_CARD, "Administración", Administracion.class);
         menu.addNaviItem(VaadinIcon.ACADEMY_CAP, "Proveedores", Payments.class);
         NaviItem personnel = menu.addNaviItem(VaadinIcon.USERS, "Contabilidad", null);
@@ -220,7 +231,7 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
                 "256x256");
 
 
-        settings.addInlineFromFile("splash-screen.html", InitialPageSettings.WrapMode.NONE);
+        //settings.addInlineFromFile("splash-screen.html", InitialPageSettings.WrapMode.NONE);
 
     }
 
@@ -251,7 +262,6 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
             afterNavigationWithoutTabs(event);
         }
     }
-
 
 
     private void afterNavigationWithTabs(AfterNavigationEvent e) {
@@ -287,5 +297,12 @@ public class MainView extends FlexBoxLayout implements RouterLayout, PageConfigu
             getAppBar().setTitle(active.getText());
         }
     }
+
+    private void initVariablesMemoria() {
+
+
+
+    }
+
 
 }
