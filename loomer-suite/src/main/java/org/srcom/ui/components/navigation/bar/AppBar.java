@@ -385,7 +385,8 @@ public class AppBar extends FlexBoxLayout {
 	/* === RESET === */
 
 	public void reset() {
-		title.setText("");
+		//alberto - el titulo no lo quitamos
+		//title.setText("");
 		setNaviMode(NaviMode.MENU);
 		removeAllActionItems();
 		removeAllTabs();

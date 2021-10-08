@@ -1,5 +1,6 @@
 package backend.entidades;
 
+import com.vaadin.flow.data.renderer.ComponentRenderer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -56,5 +57,17 @@ public class Expediente {
 	public String VIP;
 
 
+
+	public String EFHALTA;
+	public String NBCAUSA;
+	public String NUCOSTE;
+	public String MOTIVORECANUL;
+	public String NUMPOL;
 	public int NUMEXP;
+	public Object FHCIERRET;
+	public String TXGREMIO;
+	public Object TXPROVEE;
+	public String FHOCURRE;
+	public String TXSERV;
+	public String TXSITUA;
 }

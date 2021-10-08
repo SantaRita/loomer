@@ -85,6 +85,12 @@ public class LoginView extends VerticalLayout implements LocaleChangeObserver {
                     HashMap pais=  new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS", "F_GET_LSTPAISES");
                     UI.getCurrent().getSession().setAttribute("paises",pais);
 
+                    String motivos = new EjecutaPac().EjecutaPacLista("PAC_SHWEB_LISTAS", "F_QUERY","SELECT ATRIBUTO, VALORC FROM SHWEB_VALORESFIJOS WHERE TIPO = 'TIPOALTAPGE' "
+                                + " and ATRIBUTO <> 'APIREST' order by atributo");
+                    UI.getCurrent().getSession().setAttribute("motivosalta",motivos);
+
+
+
                 // if authentication was successful we will update the security context and redirect to the page requested first
                 SecurityContextHolder.getContext().setAuthentication(authentication); //
                 login.close(); //

@@ -251,6 +251,7 @@ public class Expedientes extends ViewFrame {
 
 	private void viewDetails(BankAccount bankAccount) {
 		UI.getCurrent().navigate(AccountDetails.class, bankAccount.getId());
+
 	}
 
 	/*@Override

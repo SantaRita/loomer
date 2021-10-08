@@ -1,30 +1,46 @@
 package org.srcom.ui.views;
 
 import backend.BankAccount;
+import backend.DummyData;
+import backend.Person;
 import backend.entidades.Cia;
+import backend.entidades.ComboLista;
 import backend.entidades.Expediente;
 import backend.entidades.Provincia;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.vaadin.flow.component.*;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
+import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.ItemClickEvent;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
+import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
+import com.vaadin.flow.data.selection.SelectionEvent;
+import com.vaadin.flow.data.selection.SelectionListener;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.shared.Registration;
+import com.vaadin.flow.theme.lumo.Lumo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.apachecommons.CommonsLog;
@@ -33,34 +49,36 @@ import org.json.JSONObject;
 import org.srcom.rest.EjecutaPac;
 import org.srcom.ui.components.Badge;
 import org.srcom.ui.components.FlexBoxLayout;
+import org.srcom.ui.components.Initials;
 import org.srcom.ui.components.ListItem;
-import org.srcom.ui.layout.size.Horizontal;
-import org.srcom.ui.layout.size.Right;
-import org.srcom.ui.layout.size.Uniform;
-import org.srcom.ui.layout.size.Vertical;
+import org.srcom.ui.components.detailsdrawer.DetailsDrawer;
+import org.srcom.ui.components.detailsdrawer.DetailsDrawerFooter;
+import org.srcom.ui.components.detailsdrawer.DetailsDrawerHeader;
+import org.srcom.ui.layout.size.*;
 import org.srcom.ui.util.*;
-import org.srcom.ui.util.css.Overflow;
-import org.srcom.ui.util.css.PointerEvents;
-import org.srcom.ui.util.css.Shadow;
-import org.srcom.ui.util.css.TextOverflow;
+import org.srcom.ui.util.css.*;
 import org.srcom.ui.util.css.lumo.BadgeColor;
 import org.srcom.ui.util.css.lumo.BadgeShape;
 import org.srcom.ui.util.css.lumo.BadgeSize;
 import org.srcom.ui.views.main.MainView;
 import org.srcom.utiles.Utiles;
 
+import java.awt.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @CommonsLog
 @PageTitle("Loomer")
 @Route(value = "altaexpedientes", layout = MainView.class)
-public class AltaExpedientes extends ViewFrame {
+public class AltaExpedientes extends SplitViewFrame {
 
 	public static final int MOBILE_BREAKPOINT = 480;
 
 	// nuevos
+
+	DetailsDrawerFooter footer = new DetailsDrawerFooter();
 
 	@Setter
 	@Getter
@@ -74,9 +92,12 @@ public class AltaExpedientes extends ViewFrame {
 	private TextField filterText = new TextField();
 	List<Expediente> lf = new ArrayList<Expediente>();
 
+
 	private Grid<Expediente> grid = new Grid<>();
 	private Grid<Expediente> gridExp = new Grid<>();
 	private Registration resizeListener;
+
+	FlexBoxLayout links5;
 
 	// campos antiguos
 	String estadoSrvManitas;
@@ -87,9 +108,6 @@ public class AltaExpedientes extends ViewFrame {
 	Button limpiar;
 	String inTipoAlta;
 	String inFiltro;
-	Button btCartera;
-	ComboBox cbMotivoAlta;
-	Button btPropuesta;
 	Label msgAlta;
 	HorizontalLayout panelAlta = new HorizontalLayout();
 	HorizontalLayout hBotonera = new HorizontalLayout();
@@ -102,20 +120,29 @@ public class AltaExpedientes extends ViewFrame {
 
 	ComboBox<Cia> cbCias = new ComboBox("Compañia");
 	ComboBox<Provincia> cbProvincias = new ComboBox("Provincia");;
+	ComboBox<ComboLista> cbMotivosAlta = new ComboBox();
+	Label mensajeEstadoPoliza = new Label();
+
 	TextField nombre = new TextField("Nombre") ;
 	TextField apellidos = new TextField("Apellidos");
 	TextField poliza = new TextField("Póliza");
 	TextField nif = new TextField("NIF");
 	Button btBuscar = new Button();
 	Button btLimpiar = new Button("Limpiar");
+	Button btPropuesta = new Button("Alta por Propuesta");
 
 	Label titulo;
 
 	int validarCampos = 0;
 
 
+	private DetailsDrawer detailsDrawer;
+	private DetailsDrawerHeader detailsDrawerHeader;
+
 	public AltaExpedientes() {
+
 		setViewContent(createContent());
+		setViewDetails(createDetailsDrawer());
 	}
 
 	private Component createContent() {
@@ -149,7 +176,15 @@ public class AltaExpedientes extends ViewFrame {
 		cbCias.setItemLabelGenerator(Cia::getDSCLIENTE);
 		cbCias.setItems(lCias);
 
+		// Motivodatos
 
+
+		data = (String) UI.getCurrent().getSession().getAttribute("motivosalta");
+		List<ComboLista> lMotivos = gson.fromJson(data,new TypeToken<List<ComboLista>>(){}.getType());
+		cbMotivosAlta.setItemLabelGenerator(ComboLista::getVALORC);
+		cbMotivosAlta.setItems(lMotivos);
+
+		// Provincias
 
 		data = (String) UI.getCurrent().getSession().getAttribute("provincias");
 		List<Provincia> lProvincias = gson.fromJson(data,new TypeToken<List<Provincia>>(){}.getType());
@@ -157,6 +192,8 @@ public class AltaExpedientes extends ViewFrame {
 		cbProvincias.setItems(lProvincias);
 
 		btBuscar.setText(getTranslation("buscar"));
+		btBuscar.setAutofocus(true);
+		btBuscar.setIcon(new Icon("lumo","search"));
 
 		btBuscar.addClickListener(new ComponentEventListener<ClickEvent<Button>>() {
 			@Override
@@ -167,11 +204,7 @@ public class AltaExpedientes extends ViewFrame {
 
 				binder.validate();
 				if ( binder.validate().isOk()) {
-					/*String consulta = "SELECT  EE.FHALTA, TO_CHAR(EA.FHOCURRE,'DD/MM/YYYY') FHOCURRE, EE.CDEXPAJE, EE.CDASISTE, EE.NBBENOM NOMBRE, EE.NBBEAPE1 APELLIDO  FROM EX_EXPEDIENTES ee, EX_ASISTENCIAS EA " +
-							"WHERE ee.cdasiste = ea.cdasiste AND ROWNUM < 20";
-					if (nombre != null)
-						consulta += " AND UPPER(EE.NBBENOM) LIKE '%" + nombre.getValue().toUpperCase() + "%' ";*/
-
+					detailsDrawer.hide();
 					createGrid();
 				}
 			}
@@ -205,15 +238,29 @@ public class AltaExpedientes extends ViewFrame {
 
 		FlexBoxLayout links2 = new FlexBoxLayout(btBuscar, btLimpiar);
 		btBuscar.addThemeVariants(ButtonVariant.LUMO_SMALL, ButtonVariant.LUMO_PRIMARY);
-		btLimpiar.addThemeVariants(ButtonVariant.LUMO_SMALL, ButtonVariant.LUMO_CONTRAST);
+		btLimpiar.addThemeVariants(ButtonVariant.LUMO_SMALL, ButtonVariant.LUMO_TERTIARY);
 		// IMPORTANTE ¡¡¡¡¡¡ JUSTIFICAR A LA DERECHA.
+		links2.setMargin(Top.L, Bottom.S);
 		links2.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
-
-
-
 		links2.setFlexWrap(FlexLayout.FlexWrap.WRAP);
-
 		links2.setSpacing(Right.S);
+
+		FlexBoxLayout links5 = new FlexBoxLayout(btPropuesta);
+		btPropuesta.addThemeVariants(ButtonVariant.LUMO_SMALL, ButtonVariant.LUMO_PRIMARY);
+
+		btPropuesta.addClickListener(new ComponentEventListener<ClickEvent<Button>>() {
+			@Override
+			public void onComponentEvent(ClickEvent<Button> buttonClickEvent) {
+				UI.getCurrent().navigate(AltaPropuesta.class);
+
+			}
+		});
+
+		// IMPORTANTE ¡¡¡¡¡¡ JUSTIFICAR A LA DERECHA.
+		links5.setMargin(Top.XS, Bottom.S);
+		links5.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+		links5.setFlexWrap(FlexLayout.FlexWrap.WRAP);
+		links5.setSpacing(Left.S);
 
 		FlexBoxLayout links3 = new FlexBoxLayout(grid);
 		links3.setShadow(Shadow.XS);
@@ -222,14 +269,17 @@ public class AltaExpedientes extends ViewFrame {
 		links3.setSizeUndefined();
 		links3.setSpacing(Right.S);
 
+		gridExp.setVisible(false);
 		FlexBoxLayout links4 = new FlexBoxLayout(gridExp);
 		links4.setShadow(Shadow.XS);
+		links4.setMargin(Left.M, Top.L, Right.S);
 		links4.setFlexWrap(FlexLayout.FlexWrap.WRAP);
 		links4.setSizeUndefined();
 		links4.setSpacing(Right.S);
 
 
-		FlexBoxLayout content = new FlexBoxLayout(links, links2, links3, links4);
+
+		FlexBoxLayout content = new FlexBoxLayout(links, links2, links5, links3,links4);
 		content.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
 		content.setMargin(Horizontal.AUTO );
 		content.setPadding(Uniform.RESPONSIVE_L);
@@ -237,8 +287,13 @@ public class AltaExpedientes extends ViewFrame {
 
 		poliza.setValue("02HU11092367");
 
+
+
+
 		return content;
 	}
+
+
 
 	private String consultarExpedientes() {
 
@@ -295,6 +350,8 @@ public class AltaExpedientes extends ViewFrame {
 		//grid.setSizeFull();
 		grid.setSizeUndefined();
 		grid.removeAllColumns();
+		grid.addSelectionListener(event -> event.getFirstSelectedItem()
+				.ifPresent(this::showDetails));
 
 		gridExp.setSizeUndefined();
 		gridExp.removeAllColumns();
@@ -309,12 +366,24 @@ public class AltaExpedientes extends ViewFrame {
 			JSONObject obj = lista.getJSONObject(i);
 			Expediente cl = new Expediente();
 			cl.setNROPOL(Utiles.Vacio(obj, "NROPOL"));
+			cl.setBOTON(Utiles.Vacio(obj, "BOTON"));
 			cl.setAPE1(Utiles.Vacio(obj, "APE1"));
 			cl.setNOMB(Utiles.Vacio(obj, "NOMB"));
 			cl.setDESCTTO(Utiles.Vacio(obj, "DESCTTO"));
 			cl.setFEBAJA(Utiles.Vacio(obj, "FEBAJA"));
 			cl.setCODCTTO_1(Utiles.Vacio(obj, "CODCTTO_1"));
 			cl.setCODCTTO_2(Utiles.VacioInt(obj, "CODCTTO_2"));
+			cl.setCOLORFILA(Utiles.Vacio(obj, "COLORFILA"));
+			cl.setC_A(Utiles.Vacio(obj, "C_A"));
+			cl.setDESTIT(Utiles.Vacio(obj, "DESTIT"));
+			cl.setIDDOCUM(Utiles.Vacio(obj, "IDDOCUM"));
+			cl.setIDDOCUM(Utiles.Vacio(obj, "IDDOCUM"));
+			cl.setDESDIR(Utiles.Vacio(obj, "DESDIR"));
+			cl.setCODZONA3(Utiles.Vacio(obj, "CODZONA3"));
+			cl.setCODZONA2(Utiles.Vacio(obj, "CODZONA2"));
+			cl.setFEALTA(Utiles.Vacio(obj, "FEALTA"));
+			cl.setFEFIN(Utiles.Vacio(obj, "FEFIN"));
+			cl.setMSJEFILA(Utiles.Vacio(obj, "MSJEFILA"));
 			lf.add(cl);
 		}
 			grid.setItems(lf);
@@ -322,36 +391,128 @@ public class AltaExpedientes extends ViewFrame {
 			log.error( e.toString() );
 		}
 
+
+		// Columnas ocultas
 		grid.addColumn(Expediente::getCODCTTO_1 )
 				.setHeader("CODCTTO_1")
+				.setVisible(false);
+		grid.addColumn(Expediente::getBOTON )
+				.setHeader("BOTON")
+				.setVisible(false);
+		grid.addColumn(Expediente::getCOLORFILA )
+				.setHeader("COLORFILA")
 				.setVisible(false);
 		grid.addColumn(Expediente::getCODCTTO_2 )
 				.setHeader("CODCTTO_2")
 				.setVisible(false);
-		grid.addColumn(Expediente::getNROPOL )
-				.setAutoWidth(true)
-				.setFlexGrow(0)
-				.setFrozen(true)
-				.setHeader("Póliza")
-				.setSortable(true);
 		grid.addColumn(Expediente::getNOMB )
-				.setAutoWidth(true)
-				.setFlexGrow(0)
-				.setFrozen(true)
 				.setHeader("Nombre")
-				.setSortable(true);
-		grid.addColumn(Expediente::getDESCTTO )
+				.setVisible(false);
+		grid.addColumn(Expediente::getFEBAJA )
+				.setHeader("Nombre")
+				.setVisible(false);
+		// Columnas visibles
+		grid.addComponentColumn(item -> {
+				/*	Icon icon;
+
+					if(item.getC_A().equals("B")){
+						icon = VaadinIcon.CHECK_CIRCLE.create();
+						icon.setColor("green");
+					} else {
+						icon = VaadinIcon.CLOSE_CIRCLE.create();
+						icon.setColor("red");
+					}
+					icon.setSize("1em");
+					return icon;*/
+					if (item.getC_A()!=null)
+						return new Initials(item.getC_A());
+					else
+						return new Initials("X");
+				})
 				.setAutoWidth(true)
 				.setFlexGrow(0)
 				.setFrozen(true)
+				.setSortable(false)
+				.setKey("Estado")
+				.setHeader("Estado")
+				.setResizable(false)
+				.setHeader("")
+				.setComparator(Comparator.comparing(Expediente::getC_A));
+		grid.addColumn(Expediente::getDESCTTO )
+				//.setAutoWidth(true)
+				.setWidth("18%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setResizable(true)
 				.setHeader("Contrato")
 				.setSortable(true);
-		grid.addColumn(Expediente::getFEBAJA )
-				.setAutoWidth(true)
+		grid.addColumn(Expediente::getNROPOL )
+				//.setAutoWidth(true)
+				.setWidth("10%")
 				.setFlexGrow(0)
 				.setFrozen(true)
-				.setHeader("F.Baja")
+				.setResizable(true)
+				.setHeader("Póliza")
 				.setSortable(true);
+		grid.addColumn(Expediente::getDESTIT )
+				//.setAutoWidth(true)
+				.setWidth("13%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("Cliente")
+				.setSortable(true)
+				.setResizable(true)
+				.setVisible(true);
+		grid.addColumn(Expediente::getIDDOCUM )
+				//.setAutoWidth(true)
+				.setWidth("5%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("NIF")
+				.setResizable(true)
+				.setSortable(true);
+		grid.addColumn(Expediente::getDESDIR )
+				//.setAutoWidth(true)
+				.setWidth("17%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("Dirección")
+				.setResizable(true)
+				.setSortable(true);
+		grid.addColumn(Expediente::getCODZONA3 )
+				//.setAutoWidth(true)
+				.setWidth("5%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("CP")
+				.setResizable(true)
+				.setSortable(true);
+		grid.addColumn(Expediente::getCODZONA2 )
+				//.setAutoWidth(true)
+				.setWidth("14%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setHeader("Población")
+				.setResizable(true)
+				.setSortable(true);
+		grid.addColumn(Expediente::getFEALTA )
+				//.setAutoWidth(true)
+				.setWidth("6%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setResizable(true)
+				.setHeader("F.Alta")
+				.setSortable(true);
+		grid.addColumn(Expediente::getFEFIN )
+				//.setAutoWidth(true)
+				.setWidth("6%")
+				.setFlexGrow(0)
+				.setFrozen(true)
+				.setResizable(true)
+				.setHeader("F.Fin")
+				.setSortable(true);
+
+
 
 
 
@@ -360,7 +521,7 @@ public class AltaExpedientes extends ViewFrame {
 			public void onComponentEvent(ItemClickEvent<Expediente> expedienteItemClickEvent) {
 
 				gridExp.removeAllColumns();
-				System.out.println("HAcemos click "+ expedienteItemClickEvent.getItem().getNROPOL());
+				gridExp.setVisible(true);
 				String contratos =  new EjecutaPac().EjecutaPacStr("PAC_SHWEB_EXPEDIENTES","F_GET_EXPEDIENTES",
 						expedienteItemClickEvent.getItem().getCODCTTO_1(),
 						expedienteItemClickEvent.getItem().getCODCTTO_2(),
@@ -374,6 +535,15 @@ public class AltaExpedientes extends ViewFrame {
 						JSONObject obj = lista.getJSONObject(i);
 						Expediente cl = new Expediente();
 						cl.setNUMEXP(Utiles.VacioInt(obj, "NUMEXP"));
+						cl.setTXSITUA(Utiles.Vacio(obj, "TXSITUA"));
+						cl.setFHOCURRE(Utiles.Vacio(obj, "FHOCURRE"));
+						cl.setEFHALTA(Utiles.Vacio(obj, "EFALTA"));
+						cl.setNBCAUSA(Utiles.Vacio(obj, "NBCAUSA"));
+						cl.setTXSERV(Utiles.Vacio(obj, "TXSERV"));
+						cl.setTXGREMIO(Utiles.Vacio(obj, "TXGREMIO"));
+						cl.setTXPROVEE(Utiles.Vacio(obj, "TXPROVEE"));
+						cl.setFHCIERRET(Utiles.Vacio(obj, "FHCIERRET"));
+						cl.setNUCOSTE(Utiles.Vacio(obj, "NUCOSTE"));
 						lf.add(cl);
 					}
 					gridExp.setItems(lf);
@@ -381,19 +551,169 @@ public class AltaExpedientes extends ViewFrame {
 					log.error( e.toString() );
 				}
 
+				gridExp.addComponentColumn(item -> {
 
-				gridExp.addColumn(Expediente::getNUMEXP )
+
+							return new Initials(item.getTXSITUA());
+						})
 						.setAutoWidth(true)
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setSortable(false)
+						.setResizable(false)
+						.setHeader("Sit")
+						.setComparator(Comparator.comparing(Expediente::getTXSITUA));
+				gridExp.addColumn(new ComponentRenderer<>(this::createExpedienteInfo))
+						.setAutoWidth(true)
+						.setWidth("10%")
+						.setHeader("Expediente");
+				/*gridExp.addColumn(Expediente::getNUMEXP )
+						.setWidth("7%")
 						.setFlexGrow(0)
 						.setFrozen(true)
 						.setHeader("Expediente")
 						.setSortable(true);
+				gridExp.addColumn(Expediente::getFHOCURRE )
+						.setWidth("8%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("F.Ocurrencia")
+						.setSortable(true);*/
+				gridExp.addColumn(Expediente::getFEALTA )
+						.setWidth("8%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("F.Alta")
+						.setSortable(true);
+				gridExp.addColumn(new ComponentRenderer<>(this::createExpedienteCausaInfo))
+						.setAutoWidth(true)
+						.setWidth("38%")
+						.setHeader("Causa");
+
+				/*gridExp.addColumn(Expediente::getNBCAUSA )
+						.setWidth("18%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("Causa")
+						.setSortable(true);
+				gridExp.addColumn(Expediente::getTXSERV )
+						.setWidth("22%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("Servicio")
+						.setSortable(true);
+				gridExp.addColumn(Expediente::getTXGREMIO )
+						.setWidth("8%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("Gremio")
+						.setSortable(true);*/
+				gridExp.addColumn(Expediente::getTXPROVEE )
+						.setWidth("20%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("Proveedor")
+						.setSortable(true);
+				gridExp.addColumn(Expediente::getFHCIERRET)
+						.setWidth("8%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("Fecha CT")
+						.setSortable(true);
+				gridExp.addColumn(Expediente::getNUCOSTE)
+						.setTextAlign(ColumnTextAlign.END)
+						.setWidth("6%")
+						.setFlexGrow(0)
+						.setFrozen(true)
+						.setHeader("Coste")
+						.setSortable(true);
+
+				// ESTADO DEL CONTRATO -- COLORES
+
+
+				if ( expedienteItemClickEvent.getItem().getCOLORFILA().equals("GREEN")) {
+
+					//links5.setBackgroundColor("Green");
+					mensajeEstadoPoliza.getStyle().set("color","green");
+					mensajeEstadoPoliza.setText(expedienteItemClickEvent.getItem().getMSJEFILA());
+					footer.save.setVisible(false);
+					cbMotivosAlta.setVisible(false);
+					if ( expedienteItemClickEvent.getItem().getBOTON().equals("S")) {
+						footer.save.setVisible(true);
+						cbMotivosAlta.setVisible(true);
+					}
+
+
+				}
+				else if ( expedienteItemClickEvent.getItem().getCOLORFILA().equals("RED")) {
+					mensajeEstadoPoliza.setText(expedienteItemClickEvent.getItem().getMSJEFILA());
+					mensajeEstadoPoliza.getStyle().set("color","red");
+					footer.save.setVisible(false);
+					cbMotivosAlta.setVisible(false);
+					if ( expedienteItemClickEvent.getItem().getBOTON().equals("S")) {
+						footer.save.setVisible(true);
+						cbMotivosAlta.setVisible(true);
+					}
+				}
+
+				else if ( expedienteItemClickEvent.getItem().getCOLORFILA().equals("GRAY")) {
+					mensajeEstadoPoliza.getStyle().set("color","gray");
+					mensajeEstadoPoliza.setText(expedienteItemClickEvent.getItem().getMSJEFILA());
+					footer.save.setVisible(false);
+					cbMotivosAlta.setVisible(false);
+					if ( expedienteItemClickEvent.getItem().getBOTON().equals("S")) {
+						footer.save.setVisible(true);
+						cbMotivosAlta.setVisible(true);
+
+					}
+				}
+
+				else if ( expedienteItemClickEvent.getItem().getCOLORFILA().equals("ORANGE")) {
+					mensajeEstadoPoliza.setText(expedienteItemClickEvent.getItem().getMSJEFILA());
+					mensajeEstadoPoliza.getStyle().set("color","orange");
+					footer.save.setVisible(false);
+					cbMotivosAlta.setVisible(false);
+					if ( expedienteItemClickEvent.getItem().getBOTON().equals("S")) {
+						footer.save.setVisible(true);
+					}
+				}
+
+
 
 
 
 			}
+
+			private Component createExpedienteInfo(Expediente expediente) {
+				Integer uiExpediente;
+				String uiOcurrencia = "";
+				uiExpediente = Integer.valueOf(expediente.getNUMEXP());
+				uiOcurrencia = expediente.getFHOCURRE().toString();
+
+				ListItem item = new ListItem(uiExpediente.toString(), uiOcurrencia);
+				item.setPadding(Vertical.XS);
+				item.setSpacing(Right.M);
+				return item;
+			}
+
+			private Component createExpedienteCausaInfo(Expediente expediente) {
+				String uiGremio;
+				String uiCausa = "";
+				uiGremio = expediente.getTXGREMIO();
+				uiCausa = expediente.getNBCAUSA();
+
+				ListItem item = new ListItem(uiGremio, uiCausa);
+				item.setPadding(Vertical.XS);
+				item.setSpacing(Right.M);
+				return item;
+			}
+
 		});
 	}
+
+
+
+
 
 	private BankAccountMobileTemplate getMobileTemplate(BankAccount bankAccount) {
 		return new BankAccountMobileTemplate(bankAccount);
@@ -443,19 +763,6 @@ public class AltaExpedientes extends ViewFrame {
 		/*resizeListener.remove();*/
 		super.onDetach(detachEvent);
 	}
-
-	/*private void updateVisibleColumns(int width) {
-		boolean mobile = width < MOBILE_BREAKPOINT;
-		List<Grid.Column<BankAccount>> columns = grid.getColumns();
-
-		// "Mobile" column
-		columns.get(0).setVisible(mobile);
-
-		// "Desktop" columns
-		for (int i = 1; i < columns.size(); i++) {
-			columns.get(i).setVisible(!mobile);
-		}
-	}*/
 
 	/**
 	 * A layout for displaying BankAccount info in a mobile friendly format.
@@ -541,7 +848,127 @@ public class AltaExpedientes extends ViewFrame {
 	}
 
 
+	private DetailsDrawer createDetailsDrawer() {
+		detailsDrawer = new DetailsDrawer(DetailsDrawer.Position.RIGHT);
 
+		// Header
+		detailsDrawerHeader = new DetailsDrawerHeader("");
+		detailsDrawerHeader.addCloseListener(buttonClickEvent -> detailsDrawer.hide());
+		detailsDrawer.setHeader(detailsDrawerHeader);
+
+		// Footer
+
+
+		footer.save.setText("Alta por cartera");
+		footer.save.setIcon(new Icon("lumo","edit"));
+
+		footer.cancel.setText("Cancelar");
+		footer.addSaveListener(e -> {
+			detailsDrawer.hide();
+			UIUtils.showNotification("Changes saved.");
+		});
+
+
+		footer.addCancelListener(e -> detailsDrawer.hide());
+		detailsDrawer.setFooter(footer);
+
+		return detailsDrawer;
+	}
+
+	private void showDetails(Expediente expediente) {
+		detailsDrawerHeader.setTitle("Póliza: " + expediente.getNROPOL());
+		detailsDrawer.setContent(createDetails(expediente));
+		detailsDrawer.show();
+	}
+
+
+	private FormLayout createDetails(Expediente expediente) {
+		TextField contrato = new TextField();
+		contrato.setValue(expediente.getDESCTTO());
+		contrato.setWidthFull();
+
+		TextField cliente = new TextField();
+		cliente.setValue(expediente.getDESTIT());
+		cliente.setWidthFull();
+
+
+		TextField direccion = new TextField();
+		direccion.setValue(expediente.getDESDIR());
+		direccion.setWidthFull();
+
+		TextField cp = new TextField();
+		cp.setValue(expediente.getCODZONA3());
+		cp.setWidthFull();
+
+		TextField poblacion = new TextField();
+		poblacion.setValue(expediente.getCODZONA2());
+		poblacion.setWidthFull();
+
+		TextField falta = new TextField();
+		if (expediente.getFEALTA() != null ) falta.setValue(expediente.getFEALTA().toString());
+		falta.setWidthFull();
+
+		TextField ffin = new TextField();
+		if (expediente.getFEFIN() != null ) ffin.setValue(expediente.getFEFIN().toString());
+		ffin.setWidthFull();
+
+
+		ComboBox company = new ComboBox();
+		company.setItems(DummyData.getCompanies());
+		company.setValue(DummyData.getCompany());
+		company.setWidthFull();
+
+		// Form layout
+		FormLayout form = new FormLayout();
+		form.addClassNames(LumoStyles.Padding.Bottom.L,
+				LumoStyles.Padding.Horizontal.L, LumoStyles.Padding.Top.S);
+		form.setResponsiveSteps(
+				new FormLayout.ResponsiveStep("0", 1,
+						FormLayout.ResponsiveStep.LabelsPosition.TOP),
+				new FormLayout.ResponsiveStep("21em", 1,
+						FormLayout.ResponsiveStep.LabelsPosition.TOP));
+		form.addFormItem(contrato, "Contrato");
+
+		FormLayout.FormItem clienteItem = form.addFormItem(cliente, "Cliente");
+
+
+		TextField nif = new TextField();
+		nif.setValue(expediente.getIDDOCUM());
+		nif.setWidthFull();
+		form.addFormItem(nif, "NIF");
+
+		FormLayout.FormItem direccionItem = form.addFormItem(direccion, "Dirección");
+		FormLayout.FormItem cpItem = form.addFormItem(cp, "Cp");
+		FormLayout.FormItem poblacionItem = form.addFormItem(poblacion, "Poblacion");
+		FormLayout.FormItem faltaItem = form.addFormItem(falta, "F.Alta");
+		FormLayout.FormItem ffinItem = form.addFormItem(ffin, "F.Fin");
+		FormLayout.FormItem mensajeEstadoPolizaItem = form.addFormItem(mensajeEstadoPoliza,"");
+
+
+
+
+		form.addFormItem(cbMotivosAlta,"");
+
+		contrato.setReadOnly(true);
+		cliente.setReadOnly(true);
+		nif.setReadOnly(true);
+		direccion.setReadOnly(true);
+		cp.setReadOnly(true);
+		poblacion.setReadOnly(true);
+		cbMotivosAlta.setRequired(true);
+		cbMotivosAlta.setWidthFull();
+		cbMotivosAlta.setPlaceholder("Seleccione motivo alta");
+		falta.setReadOnly(true);
+		ffin.setReadOnly(true);
+		/*FormLayout.FormItem emailItem = form.addFormItem(expediente.getDESDIR(), "Dirección");
+		FormLayout.FormItem companyItem = form.addFormItem(company, "Company");
+		FormLayout.FormItem uploadItem = form.addFormItem(new Upload(),
+				"Image");*/
+		UIUtils.setColSpan(2, contrato, poliza, nif, direccion, cp, poblacion, falta, ffin);
+
+
+		return form;
+	}
 
 	/*public void enter() {
 

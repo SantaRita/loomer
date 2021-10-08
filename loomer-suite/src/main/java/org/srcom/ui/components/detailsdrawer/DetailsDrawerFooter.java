@@ -14,8 +14,8 @@ import org.srcom.ui.util.UIUtils;
 
 public class DetailsDrawerFooter extends FlexBoxLayout {
 
-	private Button save;
-	private Button cancel;
+	public Button save;
+	public Button cancel;
 
 	public DetailsDrawerFooter() {
 		setBackgroundColor(LumoStyles.Color.Contrast._5);
