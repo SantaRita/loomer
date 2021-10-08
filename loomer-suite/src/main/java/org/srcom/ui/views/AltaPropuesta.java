@@ -2,10 +2,7 @@ package org.srcom.ui.views;
 
 import backend.BankAccount;
 import backend.DummyData;
-import backend.entidades.Cia;
-import backend.entidades.ComboLista;
-import backend.entidades.Expediente;
-import backend.entidades.Provincia;
+import backend.entidades.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.vaadin.flow.component.*;
@@ -72,15 +69,15 @@ import java.util.List;
 @PageTitle("Alta por propuesta")
 public class AltaPropuesta extends SplitViewFrame {
 
-	public ComboBox  tfContrato = new ComboBox();
+	public ComboBox<Contrato>  tfContrato = new ComboBox();
 	public ComboBox  tfSwGuardaCart = new ComboBox();
-	public ComboBox  tfCompania = new ComboBox();
+	public ComboBox<Cia>  tfCompania = new ComboBox();
 	public TextField tfNomtitular = new TextField();
 	public TextField tfApe1 = new TextField();
 	public TextField tfApe2 = new TextField();
 	public TextField tfNif = new TextField();
 	//public CheckBox ckNoValidarNif = new CheckBox("No Validar NIF/NIE  ");
-	public DateTimePicker tfVigencia= new DateTimePicker();
+	public DatePicker tfVigencia= new DatePicker();
 	public TextField tfPoliza =new TextField();
 	public TextField tfDireccion = new TextField();
 	public ComboBox tfCp = new ComboBox();
@@ -128,49 +125,16 @@ public class AltaPropuesta extends SplitViewFrame {
 
 
 
-		form.addFormItem(tfContrato, "Contrato:");
-		form.addFormItem(tfContrato, "TipoSubcontrato:");
-		form.addFormItem(tfContrato, "Subcontrato:");
 
-		tfContrato.focus();
-
-
-
-		form.addFormItem(tfCompania, "Compañia:");
-		form.addFormItem(tfNomtitular, "Nombre Titular:");
-		form.addFormItem(tfApe1, "Primer Apellido:");
-		form.addFormItem(tfApe2, "Segundo Apellido:");
-		form.addFormItem(tfNif, "Nif:");
-		//form.addFormItem(ckNoValidarNif, "No Validar NIF:");
-
-		form.addFormItem(tfVigencia, "Vigencia:");
-
-		form.addFormItem(tfPoliza, "Póliza:");
-
-		form.addFormItem(tfTelefono, "Telefono:");
-
-		form.addFormItem(tfDireccion, "Dirección:");
-
-		form.addFormItem(tfPais, "País:");
-
-		form.addFormItem(tfProvincia, "Provincia:");
-
-		form.addFormItem(tfPoblacion, "Población:");
-
-		form.addFormItem(tfCp, "Código Postal:");
-
-		//form.addFormItem(tfVip, "Vip:");
-
-		form.addFormItem(tfVipDescripcion, "Descripción VIP:");
-
-		form.addFormItem(tfOficina, "Oficina:");
-
-		form.addFormItem(tfCodigoActivo, "Código Activo:");
 */
 
-		FormLayout layoutWithFormItems = new FormLayout();
+		FormLayout form = new FormLayout();
+		form.addClassNames(LumoStyles.Padding.Bottom.L,
+				LumoStyles.Padding.Horizontal.L, LumoStyles.Padding.Top.L,
+				LumoStyles.Padding.Left.L, LumoStyles.Shadow.S);
 
-		TextField firstName = new TextField();
+
+		/*TextField firstName = new TextField();
 		firstName.setPlaceholder("John");
 
 		TextField lastName = new TextField();
@@ -181,16 +145,74 @@ public class AltaPropuesta extends SplitViewFrame {
 		DatePicker birthDate = new DatePicker();
 		Checkbox doNotCall = new Checkbox("Do not call");
 
-		layoutWithFormItems.addFormItem(firstName, "First name");
-		layoutWithFormItems.addFormItem(lastName, "Last name");
+		form.addFormItem(firstName, "First name");
+		form.addFormItem(lastName, "Last name");
 
-		layoutWithFormItems.addFormItem(birthDate, "Birthdate");
-		layoutWithFormItems.addFormItem(email, "E-mail");
-		FormLayout.FormItem phoneItem = layoutWithFormItems.addFormItem(phone, "Phone");
-		phoneItem.add(doNotCall);
+		form.addFormItem(birthDate, "Birthdate");
+		form.addFormItem(email, "E-mail");
+		FormLayout.FormItem phoneItem = form.addFormItem(phone, "Phone");*/
+
+		form.addFormItem(tfContrato, "Contrato:");
+		tfContrato.getStyle().set("width", "18em");
+		form.addFormItem(tfCompania, "Compañia:");
+		tfCompania.getStyle().set("width", "18em");
+
+		String data = null;
+		Gson gson = new Gson();
 
 
-		return layoutWithFormItems;
+		// Carga de datos
+
+		data = (String) UI.getCurrent().getSession().getAttribute("contratos");
+
+		Type typeContrato = new TypeToken<List<Contrato>>(){}.getType();
+		List<Contrato> lContratos = gson.fromJson(data, typeContrato);
+		tfContrato.setItemLabelGenerator(Contrato::getNBCONTRA);
+		tfContrato.setItems(lContratos);
+
+
+		data = (String) UI.getCurrent().getSession().getAttribute("companias");
+
+		Type type = new TypeToken<List<Cia>>(){}.getType();
+		List<Cia> lCias = gson.fromJson(data, type);
+		tfCompania.setItemLabelGenerator(Cia::getDSCLIENTE);
+		tfCompania.setItems(lCias);
+
+		form.addFormItem(tfNomtitular, "Nombre Titular:");
+		form.addFormItem(tfApe1, "Primer Apellido:");
+		form.addFormItem(tfApe2, "Segundo Apellido:");
+		form.addFormItem(tfNif, "Nif:");
+		form.addFormItem(tfVigencia, "Vigencia:");
+		form.addFormItem(tfPoliza, "Póliza:");
+		form.addFormItem(tfTelefono, "Telefono:");
+		form.addFormItem(tfDireccion, "Dirección:");
+		form.addFormItem(tfPais, "País:");
+		form.addFormItem(tfProvincia, "Provincia:");
+		form.addFormItem(tfPoblacion, "Población:");
+		form.addFormItem(tfCp, "Código Postal:");
+
+		//form.addFormItem(tfVip, "Vip:");
+
+		form.addFormItem(tfVipDescripcion, "Descripción VIP:");
+
+		form.addFormItem(tfOficina, "Oficina:");
+
+		form.addFormItem(tfCodigoActivo, "Código Activo:");
+
+		tfContrato.focus();
+
+		form.setColspan(tfNomtitular,2);
+
+
+		//System.out.println("Cambiamos el contrato:"+tfContrato.getItemCaption(tfContrato.getValue()));
+
+		tfSwGuardaCart.setValue(tfContrato.getValue());
+
+
+
+
+
+		return form;
 	}
 
 

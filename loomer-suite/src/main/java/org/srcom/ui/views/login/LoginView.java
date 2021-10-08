@@ -78,7 +78,7 @@ public class LoginView extends VerticalLayout implements LocaleChangeObserver {
                     UI.getCurrent().getSession().setAttribute("companias",data);
 
 
-                    HashMap ctr = new EjecutaPac().EjecutaPac("PAC_SHWEB_LISTAS", "F_GET_LSTCONTRATOS", "-1");
+                    String ctr = new EjecutaPac().EjecutaPacLista("PAC_SHWEB_LISTAS", "F_GET_LSTCONTRATOS", "-1");
                     UI.getCurrent().getSession().setAttribute("contratos",ctr);
 
 
